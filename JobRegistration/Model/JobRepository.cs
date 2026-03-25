@@ -1,10 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Data;
 using System.Data.SqlClient;
-using Obc.Bs.Windows.UI.SKI.JobRegistration.Model;
 
-namespace Obc.Bs.Windows.UI.SKI.JobRegistration.Model
+namespace JobRegistration.Model
 {
     /// <summary>
     /// 職種データのデータアクセスを担当するリポジトリクラス
@@ -12,7 +8,7 @@ namespace Obc.Bs.Windows.UI.SKI.JobRegistration.Model
     public class JobRepository
     {
         // 接続文字列 (ユーザー指定の設定)
-        private readonly string _connectionString = "Server=AOKADA-PC\\SQLEXPRESS;Database=TestDB;User ID=sa;Password=Sqlserver2022;TrustServerCertificate=True";
+        private readonly string _connectionString = "Server=AOKADA-PC\\SQLEXPRESS;Database=SKI_AttendanceDB;User ID=sa;Password=Sqlserver2022;TrustServerCertificate=True";
 
         public JobRepository()
         {

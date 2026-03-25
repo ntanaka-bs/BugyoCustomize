@@ -476,11 +476,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\aokada\\Documents\\MyProject\\Work\\04_阪南ビジネスマシン\\02_src\\BugyoCustomize-\\JobRegistration\\JobRegistration.csproj",
+      "projectUniqueName": "C:\\Users\\aokada\\Documents\\MyProject\\Work\\04_阪南ビジネスマシン\\src\\BugyoCustomize\\JobRegistration\\JobRegistration.csproj",
       "projectName": "JobRegistration",
-      "projectPath": "C:\\Users\\aokada\\Documents\\MyProject\\Work\\04_阪南ビジネスマシン\\02_src\\BugyoCustomize-\\JobRegistration\\JobRegistration.csproj",
+      "projectPath": "C:\\Users\\aokada\\Documents\\MyProject\\Work\\04_阪南ビジネスマシン\\src\\BugyoCustomize\\JobRegistration\\JobRegistration.csproj",
       "packagesPath": "C:\\Users\\aokada\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\aokada\\Documents\\MyProject\\Work\\04_阪南ビジネスマシン\\02_src\\BugyoCustomize-\\JobRegistration\\obj\\",
+      "outputPath": "C:\\Users\\aokada\\Documents\\MyProject\\Work\\04_阪南ビジネスマシン\\src\\BugyoCustomize\\JobRegistration\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

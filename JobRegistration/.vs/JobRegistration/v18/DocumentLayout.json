@@ -1,12 +1,37 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\aokada\\Documents\\MyProject\\Work\\04_\u962A\u5357\u30D3\u30B8\u30CD\u30B9\u30DE\u30B7\u30F3\\02_src\\BugyoCustomize-\\JobRegistration\\",
-  "Documents": [],
+  "WorkspaceRootPath": "C:\\Users\\aokada\\Documents\\MyProject\\Work\\04_\u962A\u5357\u30D3\u30B8\u30CD\u30B9\u30DE\u30B7\u30F3\\src\\BugyoCustomize\\JobRegistration\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{9BB70F6B-22DA-4AE1-816C-C58849FEC570}|JobRegistration.csproj|c:\\users\\aokada\\documents\\myproject\\work\\04_\u962A\u5357\u30D3\u30B8\u30CD\u30B9\u30DE\u30B7\u30F3\\src\\bugyocustomize\\jobregistration\\model\\jobrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9BB70F6B-22DA-4AE1-816C-C58849FEC570}|JobRegistration.csproj|solutionrelative:model\\jobrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "JobRepository.cs",
+              "DocumentMoniker": "C:\\Users\\aokada\\Documents\\MyProject\\Work\\04_\u962A\u5357\u30D3\u30B8\u30CD\u30B9\u30DE\u30B7\u30F3\\src\\BugyoCustomize\\JobRegistration\\Model\\JobRepository.cs",
+              "RelativeDocumentMoniker": "Model\\JobRepository.cs",
+              "ToolTip": "C:\\Users\\aokada\\Documents\\MyProject\\Work\\04_\u962A\u5357\u30D3\u30B8\u30CD\u30B9\u30DE\u30B7\u30F3\\src\\BugyoCustomize\\JobRegistration\\Model\\JobRepository.cs",
+              "RelativeToolTip": "Model\\JobRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-25T08:46:23.644Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }

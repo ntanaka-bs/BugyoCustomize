@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "rbV2JHEZbos=",
+  "dgSpecHash": "X/85H2UnzZI=",
   "success": true,
-  "projectFilePath": "C:\\Users\\aokada\\Documents\\MyProject\\Work\\04_阪南ビジネスマシン\\02_src\\BugyoCustomize-\\JobRegistration\\JobRegistration.csproj",
+  "projectFilePath": "C:\\Users\\aokada\\Documents\\MyProject\\Work\\04_阪南ビジネスマシン\\src\\BugyoCustomize\\JobRegistration\\JobRegistration.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\aokada\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\aokada\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",

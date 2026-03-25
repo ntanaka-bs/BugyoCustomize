@@ -3,10 +3,10 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
-using Obc.Bs.Windows.UI.SKI.JobRegistration.Common;
-using Obc.Bs.Windows.UI.SKI.JobRegistration.Model;
+using JobRegistration.Common;
+using JobRegistration.Model;
 
-namespace Obc.Bs.Windows.UI.SKI.JobRegistration.ViewModel
+namespace JobRegistration.ViewModel
 {
     public class MainViewModel : ViewModelBase
     {

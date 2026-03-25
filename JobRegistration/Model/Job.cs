@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel;
 
-namespace Obc.Bs.Windows.UI.SKI.JobRegistration.Model
+namespace JobRegistration.Model
 {
     /// <summary>
     /// 職種情報を表すモデル

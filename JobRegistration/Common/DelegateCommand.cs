@@ -1,7 +1,7 @@
 using System;
 using System.Windows.Input;
 
-namespace Obc.Bs.Windows.UI.SKI.JobRegistration.Common
+namespace JobRegistration.Common
 {
     /// <summary>
     /// シンプルな DelegateCommand 実装

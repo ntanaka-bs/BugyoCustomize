@@ -1,6 +1,6 @@
 using System.Windows;
 
-namespace Obc.Bs.Windows.UI.SKI.JobRegistration
+namespace JobRegistration
 {
     public partial class App : Application
     {

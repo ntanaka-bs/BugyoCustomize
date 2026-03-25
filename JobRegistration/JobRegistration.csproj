@@ -6,7 +6,7 @@
     <UseWPF>true</UseWPF>
     <ImplicitUsings>enable</ImplicitUsings>
     <AssemblyName>JobRegistration</AssemblyName>
-    <RootNamespace>Obc.Bs.Windows.UI.SKI.JobRegistration</RootNamespace>
+    <RootNamespace>JobRegistration</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

@@ -2,7 +2,7 @@ using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace Obc.Bs.Windows.UI.SKI.JobRegistration.Common
+namespace JobRegistration.Common
 {
     /// <summary>
     /// ViewModel の基底クラス
