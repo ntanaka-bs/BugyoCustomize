@@ -1,0 +1,682 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "JobRegistration/1.0.0": {
+        "dependencies": {
+          "System.Data.SqlClient": "4.8.6",
+          "Obc.Bs.Biz": "1.0.0.0",
+          "Obc.Vp.Framework": "1.6.4.0",
+          "Obc.Vp.Windows.Controls": "1.6.4.0"
+        },
+        "runtime": {
+          "JobRegistration.dll": {}
+        }
+      },
+      "runtime.native.System.Data.SqlClient.sni/4.7.0": {
+        "dependencies": {
+          "runtime.win-arm64.runtime.native.System.Data.SqlClient.sni": "4.4.0",
+          "runtime.win-x64.runtime.native.System.Data.SqlClient.sni": "4.4.0",
+          "runtime.win-x86.runtime.native.System.Data.SqlClient.sni": "4.4.0"
+        }
+      },
+      "runtime.win-arm64.runtime.native.System.Data.SqlClient.sni/4.4.0": {
+        "runtimeTargets": {
+          "runtimes/win-arm64/native/sni.dll": {
+            "rid": "win-arm64",
+            "assetType": "native",
+            "fileVersion": "4.6.25512.1"
+          }
+        }
+      },
+      "runtime.win-x64.runtime.native.System.Data.SqlClient.sni/4.4.0": {
+        "runtimeTargets": {
+          "runtimes/win-x64/native/sni.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "4.6.25512.1"
+          }
+        }
+      },
+      "runtime.win-x86.runtime.native.System.Data.SqlClient.sni/4.4.0": {
+        "runtimeTargets": {
+          "runtimes/win-x86/native/sni.dll": {
+            "rid": "win-x86",
+            "assetType": "native",
+            "fileVersion": "4.6.25512.1"
+          }
+        }
+      },
+      "System.Data.SqlClient/4.8.6": {
+        "dependencies": {
+          "runtime.native.System.Data.SqlClient.sni": "4.7.0"
+        },
+        "runtime": {
+          "lib/netcoreapp2.1/System.Data.SqlClient.dll": {
+            "assemblyVersion": "4.6.1.6",
+            "fileVersion": "4.700.23.52603"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/unix/lib/netcoreapp2.1/System.Data.SqlClient.dll": {
+            "rid": "unix",
+            "assetType": "runtime",
+            "assemblyVersion": "4.6.1.6",
+            "fileVersion": "4.700.23.52603"
+          },
+          "runtimes/win/lib/netcoreapp2.1/System.Data.SqlClient.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "4.6.1.6",
+            "fileVersion": "4.700.23.52603"
+          }
+        }
+      },
+      "Obc.Bs.Biz/1.0.0.0": {
+        "runtime": {
+          "Obc.Bs.Biz.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Obc.Vp.Framework/1.6.4.0": {
+        "runtime": {
+          "Obc.Vp.Framework.dll": {
+            "assemblyVersion": "1.6.4.0",
+            "fileVersion": "1.8.0.5"
+          }
+        }
+      },
+      "Obc.Vp.Windows.Controls/1.6.4.0": {
+        "runtime": {
+          "Obc.Vp.Windows.Controls.dll": {
+            "assemblyVersion": "1.6.4.0",
+            "fileVersion": "1.8.203.0"
+          }
+        }
+      },
+      "Obc.Vp.Business/1.6.4.0": {
+        "runtime": {
+          "Obc.Vp.Business.dll": {
+            "assemblyVersion": "1.6.4.0",
+            "fileVersion": "1.8.203.0"
+          }
+        }
+      },
+      "Obc.Windows.Forms/4.0.0.0": {
+        "runtime": {
+          "Obc.Windows.Forms.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.0.0"
+          }
+        }
+      },
+      "ObcVpLibrary/1.6.4.0": {
+        "runtime": {
+          "ObcVpLibrary.dll": {
+            "assemblyVersion": "1.6.4.0",
+            "fileVersion": "1.8.203.0"
+          }
+        }
+      },
+      "Obc.Vp.Windows/1.6.4.0": {
+        "runtime": {
+          "Obc.Vp.Windows.dll": {
+            "assemblyVersion": "1.6.4.0",
+            "fileVersion": "1.8.203.0"
+          }
+        }
+      },
+      "Obc.Biz/4.0.0.0": {
+        "runtime": {
+          "Obc.Biz.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.0.1"
+          }
+        }
+      },
+      "Obccrlib/4.0.0.0": {
+        "runtime": {
+          "Obccrlib.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.0.0"
+          }
+        }
+      },
+      "Obc.Biz.Management.Service/4.0.0.0": {
+        "runtime": {
+          "Obc.Biz.Management.Service.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.0.0"
+          }
+        }
+      },
+      "Obc.Windows.Forms.Security/4.0.0.0": {
+        "runtime": {
+          "Obc.Windows.Forms.Security.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.0.0"
+          }
+        }
+      },
+      "Obc.Biz.Security/4.0.0.0": {
+        "runtime": {
+          "Obc.Biz.Security.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.0.0"
+          }
+        }
+      },
+      "Obc.Biz.Management.Components/4.0.0.0": {
+        "runtime": {
+          "Obc.Biz.Management.Components.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.0.1"
+          }
+        }
+      },
+      "Obc.Windows.Forms.Database/4.0.0.0": {
+        "runtime": {
+          "Obc.Windows.Forms.Database.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.0.0"
+          }
+        }
+      },
+      "Obc.Data/4.0.0.0": {
+        "runtime": {
+          "Obc.Data.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.3.0.0"
+          }
+        }
+      },
+      "Interop.Excel/3.0.0.2": {
+        "runtime": {
+          "Interop.Excel.dll": {
+            "assemblyVersion": "3.0.0.2",
+            "fileVersion": "3.0.0.2"
+          }
+        }
+      },
+      "Obc.Drawing.Design/4.0.0.0": {
+        "runtime": {
+          "Obc.Drawing.Design.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.0.0"
+          }
+        }
+      },
+      "Obc.Drawing/4.0.0.0": {
+        "runtime": {
+          "Obc.Drawing.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.0.0"
+          }
+        }
+      },
+      "Obc.Biz.Presentation/4.0.0.0": {
+        "runtime": {
+          "Obc.Biz.Presentation.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.0.0"
+          }
+        }
+      },
+      "Obc.Biz.UserProcess/4.0.0.0": {
+        "runtime": {
+          "Obc.Biz.UserProcess.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.0.0"
+          }
+        }
+      },
+      "Obc.Biz.BizFlow/4.0.0.0": {
+        "runtime": {
+          "Obc.Biz.BizFlow.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.0.0"
+          }
+        }
+      },
+      "Obc.Biz.AutoExec/4.0.0.0": {
+        "runtime": {
+          "Obc.Biz.AutoExec.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.0.0"
+          }
+        }
+      },
+      "Obc.Biz.Management.Components.Data/4.0.0.0": {
+        "runtime": {
+          "Obc.Biz.Management.Components.Data.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.0.3"
+          }
+        }
+      },
+      "Interop.Outlook2013/3.0.0.1": {
+        "runtime": {
+          "Interop.Outlook2013.dll": {
+            "assemblyVersion": "3.0.0.1",
+            "fileVersion": "3.0.0.1"
+          }
+        }
+      },
+      "Obc.WcfClient.Cloud.Components/4.0.0.0": {
+        "runtime": {
+          "Obc.WcfClient.Cloud.Components.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.0.0"
+          }
+        }
+      },
+      "Obc.WcfClient.Cloud/4.0.0.0": {
+        "runtime": {
+          "Obc.WcfClient.Cloud.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.0.0"
+          }
+        }
+      },
+      "Obc.Windows.Forms.resources.const/4.0.0.0": {
+        "runtime": {
+          "Obc.Windows.Forms.resources.const.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.0.0"
+          }
+        }
+      },
+      "Obc.Biz.CrossTask.Components.Almanac/4.0.0.0": {
+        "runtime": {
+          "Obc.Biz.CrossTask.Components.Almanac.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.0.0"
+          }
+        }
+      },
+      "Obc.Biz.Management.Components.Environment/4.0.0.0": {
+        "runtime": {
+          "Obc.Biz.Management.Components.Environment.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.0.0"
+          }
+        }
+      },
+      "Obc.Windows.Forms.ImportExport/4.0.0.0": {
+        "runtime": {
+          "Obc.Windows.Forms.ImportExport.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.0.0"
+          }
+        }
+      },
+      "Obc.Windows.Forms.Report/4.0.0.0": {
+        "runtime": {
+          "Obc.Windows.Forms.Report.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.0.0"
+          }
+        }
+      },
+      "Obc.Biz.Surveillance/4.0.0.0": {
+        "runtime": {
+          "Obc.Biz.Surveillance.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.0.0"
+          }
+        }
+      },
+      "Obc.Biz.Messaging/4.0.0.0": {
+        "runtime": {
+          "Obc.Biz.Messaging.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.0.0"
+          }
+        }
+      },
+      "Interop.Office/3.0.0.2": {
+        "runtime": {
+          "Interop.Office.dll": {
+            "assemblyVersion": "3.0.0.2",
+            "fileVersion": "3.0.0.2"
+          }
+        }
+      },
+      "Interop.VBIDE/3.0.0.2": {
+        "runtime": {
+          "Interop.VBIDE.dll": {
+            "assemblyVersion": "3.0.0.2",
+            "fileVersion": "3.0.0.2"
+          }
+        }
+      },
+      "Newtonsoft.Json/7.0.0.0": {
+        "runtime": {
+          "Newtonsoft.Json.dll": {
+            "assemblyVersion": "7.0.0.0",
+            "fileVersion": "7.0.1.18622"
+          }
+        }
+      },
+      "stdole/7.0.3300.0": {
+        "runtime": {
+          "stdole.dll": {
+            "assemblyVersion": "7.0.3300.0",
+            "fileVersion": "7.0.9466.0"
+          }
+        }
+      },
+      "Interop.Office2013/3.0.0.1": {
+        "runtime": {
+          "Interop.Office2013.dll": {
+            "assemblyVersion": "3.0.0.1",
+            "fileVersion": "3.0.0.1"
+          }
+        }
+      },
+      "Microsoft.SharePoint.Client.Runtime/14.0.0.0": {
+        "runtime": {
+          "Microsoft.SharePoint.Client.Runtime.dll": {
+            "assemblyVersion": "14.0.0.0",
+            "fileVersion": "14.0.4762.1000"
+          }
+        }
+      },
+      "Microsoft.IdentityModel/3.5.0.0": {
+        "runtime": {
+          "Microsoft.IdentityModel.dll": {
+            "assemblyVersion": "3.5.0.0",
+            "fileVersion": "6.1.7600.16394"
+          }
+        }
+      },
+      "Microsoft.SharePoint.Client/14.0.0.0": {
+        "runtime": {
+          "Microsoft.SharePoint.Client.dll": {
+            "assemblyVersion": "14.0.0.0",
+            "fileVersion": "14.0.4762.1000"
+          }
+        }
+      },
+      "Interop.Excel2013/3.0.0.1": {
+        "runtime": {
+          "Interop.Excel2013.dll": {
+            "assemblyVersion": "3.0.0.1",
+            "fileVersion": "3.0.0.1"
+          }
+        }
+      },
+      "Interop.VBIDE2013/3.0.0.1": {
+        "runtime": {
+          "Interop.VBIDE2013.dll": {
+            "assemblyVersion": "3.0.0.1",
+            "fileVersion": "3.0.0.1"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "JobRegistration/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "runtime.native.System.Data.SqlClient.sni/4.7.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-9kyFSIdN3T0qjDQ2R0HRXYIhS3l5psBzQi6qqhdLz+SzFyEy4sVxNOke+yyYv8Cu8rPER12c3RDjLT8wF3WBYQ==",
+      "path": "runtime.native.system.data.sqlclient.sni/4.7.0",
+      "hashPath": "runtime.native.system.data.sqlclient.sni.4.7.0.nupkg.sha512"
+    },
+    "runtime.win-arm64.runtime.native.System.Data.SqlClient.sni/4.4.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-LbrynESTp3bm5O/+jGL8v0Qg5SJlTV08lpIpFesXjF6uGNMWqFnUQbYBJwZTeua6E/Y7FIM1C54Ey1btLWupdg==",
+      "path": "runtime.win-arm64.runtime.native.system.data.sqlclient.sni/4.4.0",
+      "hashPath": "runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512"
+    },
+    "runtime.win-x64.runtime.native.System.Data.SqlClient.sni/4.4.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-38ugOfkYJqJoX9g6EYRlZB5U2ZJH51UP8ptxZgdpS07FgOEToV+lS11ouNK2PM12Pr6X/PpT5jK82G3DwH/SxQ==",
+      "path": "runtime.win-x64.runtime.native.system.data.sqlclient.sni/4.4.0",
+      "hashPath": "runtime.win-x64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512"
+    },
+    "runtime.win-x86.runtime.native.System.Data.SqlClient.sni/4.4.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-YhEdSQUsTx+C8m8Bw7ar5/VesXvCFMItyZF7G1AUY+OM0VPZUOeAVpJ4Wl6fydBGUYZxojTDR3I6Bj/+BPkJNA==",
+      "path": "runtime.win-x86.runtime.native.system.data.sqlclient.sni/4.4.0",
+      "hashPath": "runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512"
+    },
+    "System.Data.SqlClient/4.8.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-2Ij/LCaTQRyAi5lAv7UUTV9R2FobC8xN9mE0fXBZohum/xLl8IZVmE98Rq5ugQHjCgTBRKqpXRb4ORulRdA6Ig==",
+      "path": "system.data.sqlclient/4.8.6",
+      "hashPath": "system.data.sqlclient.4.8.6.nupkg.sha512"
+    },
+    "Obc.Bs.Biz/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Obc.Vp.Framework/1.6.4.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Obc.Vp.Windows.Controls/1.6.4.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Obc.Vp.Business/1.6.4.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Obc.Windows.Forms/4.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ObcVpLibrary/1.6.4.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Obc.Vp.Windows/1.6.4.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Obc.Biz/4.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Obccrlib/4.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Obc.Biz.Management.Service/4.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Obc.Windows.Forms.Security/4.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Obc.Biz.Security/4.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Obc.Biz.Management.Components/4.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Obc.Windows.Forms.Database/4.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Obc.Data/4.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Interop.Excel/3.0.0.2": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Obc.Drawing.Design/4.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Obc.Drawing/4.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Obc.Biz.Presentation/4.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Obc.Biz.UserProcess/4.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Obc.Biz.BizFlow/4.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Obc.Biz.AutoExec/4.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Obc.Biz.Management.Components.Data/4.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Interop.Outlook2013/3.0.0.1": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Obc.WcfClient.Cloud.Components/4.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Obc.WcfClient.Cloud/4.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Obc.Windows.Forms.resources.const/4.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Obc.Biz.CrossTask.Components.Almanac/4.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Obc.Biz.Management.Components.Environment/4.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Obc.Windows.Forms.ImportExport/4.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Obc.Windows.Forms.Report/4.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Obc.Biz.Surveillance/4.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Obc.Biz.Messaging/4.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Interop.Office/3.0.0.2": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Interop.VBIDE/3.0.0.2": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Newtonsoft.Json/7.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "stdole/7.0.3300.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Interop.Office2013/3.0.0.1": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.SharePoint.Client.Runtime/14.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.IdentityModel/3.5.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.SharePoint.Client/14.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Interop.Excel2013/3.0.0.1": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Interop.VBIDE2013/3.0.0.1": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
