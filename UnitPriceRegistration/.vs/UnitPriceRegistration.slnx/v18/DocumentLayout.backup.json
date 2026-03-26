@@ -1,0 +1,71 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\source\\BugyoCustomize\\UnitPriceRegistration\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{CA06BD6F-5EBA-8E0E-E825-FAA22555DD5F}|UnitPriceRegistration.csproj|c:\\source\\bugyocustomize\\unitpriceregistration\\viewmodels\\mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA06BD6F-5EBA-8E0E-E825-FAA22555DD5F}|UnitPriceRegistration.csproj|solutionrelative:viewmodels\\mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA06BD6F-5EBA-8E0E-E825-FAA22555DD5F}|UnitPriceRegistration.csproj|c:\\source\\bugyocustomize\\unitpriceregistration\\dataaccess\\unitpricerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA06BD6F-5EBA-8E0E-E825-FAA22555DD5F}|UnitPriceRegistration.csproj|solutionrelative:dataaccess\\unitpricerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA06BD6F-5EBA-8E0E-E825-FAA22555DD5F}|UnitPriceRegistration.csproj|c:\\source\\bugyocustomize\\unitpriceregistration\\viewmodels\\common.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA06BD6F-5EBA-8E0E-E825-FAA22555DD5F}|UnitPriceRegistration.csproj|solutionrelative:viewmodels\\common.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UnitPriceRepository.cs",
+              "DocumentMoniker": "C:\\source\\BugyoCustomize\\UnitPriceRegistration\\DataAccess\\UnitPriceRepository.cs",
+              "RelativeDocumentMoniker": "DataAccess\\UnitPriceRepository.cs",
+              "ToolTip": "C:\\source\\BugyoCustomize\\UnitPriceRegistration\\DataAccess\\UnitPriceRepository.cs",
+              "RelativeToolTip": "DataAccess\\UnitPriceRepository.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAwAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-26T02:13:57.363Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Common.cs",
+              "DocumentMoniker": "C:\\source\\BugyoCustomize\\UnitPriceRegistration\\ViewModels\\Common.cs",
+              "RelativeDocumentMoniker": "ViewModels\\Common.cs",
+              "ToolTip": "C:\\source\\BugyoCustomize\\UnitPriceRegistration\\ViewModels\\Common.cs",
+              "RelativeToolTip": "ViewModels\\Common.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-26T01:54:23.148Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MainViewModel.cs",
+              "DocumentMoniker": "C:\\source\\BugyoCustomize\\UnitPriceRegistration\\ViewModels\\MainViewModel.cs",
+              "RelativeDocumentMoniker": "ViewModels\\MainViewModel.cs",
+              "ToolTip": "C:\\source\\BugyoCustomize\\UnitPriceRegistration\\ViewModels\\MainViewModel.cs",
+              "RelativeToolTip": "ViewModels\\MainViewModel.cs",
+              "ViewState": "AgIAAOcAAAAAAAAAAAAgwBIAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-26T00:46:25.994Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
