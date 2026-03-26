@@ -3,10 +3,6 @@
   "WorkspaceRootPath": "C:\\Users\\aokada\\Documents\\MyProject\\Work\\04_\u962A\u5357\u30D3\u30B8\u30CD\u30B9\u30DE\u30B7\u30F3\\src\\BugyoCustomize\\JobRegistration\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{9BB70F6B-22DA-4AE1-816C-C58849FEC570}|JobRegistration.csproj|c:\\users\\aokada\\documents\\myproject\\work\\04_\u962A\u5357\u30D3\u30B8\u30CD\u30B9\u30DE\u30B7\u30F3\\src\\bugyocustomize\\jobregistration\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{9BB70F6B-22DA-4AE1-816C-C58849FEC570}|JobRegistration.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{9BB70F6B-22DA-4AE1-816C-C58849FEC570}|JobRegistration.csproj|c:\\users\\aokada\\documents\\myproject\\work\\04_\u962A\u5357\u30D3\u30B8\u30CD\u30B9\u30DE\u30B7\u30F3\\src\\bugyocustomize\\jobregistration\\common\\delegatecommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9BB70F6B-22DA-4AE1-816C-C58849FEC570}|JobRegistration.csproj|solutionrelative:common\\delegatecommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -27,18 +23,6 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "MainWindow.xaml",
-              "DocumentMoniker": "C:\\Users\\aokada\\Documents\\MyProject\\Work\\04_\u962A\u5357\u30D3\u30B8\u30CD\u30B9\u30DE\u30B7\u30F3\\src\\BugyoCustomize\\JobRegistration\\MainWindow.xaml",
-              "RelativeDocumentMoniker": "MainWindow.xaml",
-              "ToolTip": "C:\\Users\\aokada\\Documents\\MyProject\\Work\\04_\u962A\u5357\u30D3\u30B8\u30CD\u30B9\u30DE\u30B7\u30F3\\src\\BugyoCustomize\\JobRegistration\\MainWindow.xaml",
-              "RelativeToolTip": "MainWindow.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-03-26T02:31:12.881Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
               "Title": "DelegateCommand.cs",
               "DocumentMoniker": "C:\\Users\\aokada\\Documents\\MyProject\\Work\\04_\u962A\u5357\u30D3\u30B8\u30CD\u30B9\u30DE\u30B7\u30F3\\src\\BugyoCustomize\\JobRegistration\\Common\\DelegateCommand.cs",
               "RelativeDocumentMoniker": "Common\\DelegateCommand.cs",
@@ -51,7 +35,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "JobRepository.cs",
               "DocumentMoniker": "C:\\Users\\aokada\\Documents\\MyProject\\Work\\04_\u962A\u5357\u30D3\u30B8\u30CD\u30B9\u30DE\u30B7\u30F3\\src\\BugyoCustomize\\JobRegistration\\Model\\JobRepository.cs",
               "RelativeDocumentMoniker": "Model\\JobRepository.cs",
