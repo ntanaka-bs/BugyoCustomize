@@ -3,147 +3,190 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:viewmodel="clr-namespace:JobRegistration.ViewModel"
+        xmlns:local="clr-namespace:JobRegistration"
+        xmlns:vm="clr-namespace:JobRegistration.ViewModel"
         mc:Ignorable="d"
-        Title="職種登録" Height="450" Width="800"
-        Background="#E6EBEF">
-    <Window.Resources>
-        <!-- ファンクションキーのスタイル -->
-        <Style x:Key="FKeyStyle" TargetType="Button">
-            <Setter Property="Margin" Value="2"/>
-            <Setter Property="Padding" Value="5"/>
-            <Setter Property="Background">
-                <Setter.Value>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                        <GradientStop Color="#F8F8F8" Offset="0.0"/>
-                        <GradientStop Color="#E0E0E0" Offset="0.5"/>
-                        <GradientStop Color="#D0D0D0" Offset="1.0"/>
-                    </LinearGradientBrush>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="BorderBrush" Value="Gray"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="Foreground" Value="Black"/>
-            <Setter Property="Height" Value="60"/>
-            <Setter Property="MinWidth" Value="60"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" 
-                                BorderBrush="{TemplateBinding BorderBrush}" 
-                                BorderThickness="{TemplateBinding BorderThickness}" 
-                                CornerRadius="3">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
+        Title="職種登録" Height="550" Width="800"
+        WindowStartupLocation="CenterScreen"
+        Background="#F0F0F0"
+        ResizeMode="NoResize">
 
-        <!-- DataGridヘッダーのスタイル -->
-        <Style TargetType="DataGridColumnHeader">
-            <Setter Property="Background" Value="#808080"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="BorderBrush" Value="Black"/>
-            <Setter Property="BorderThickness" Value="0,0,1,1"/>
-            <Setter Property="Padding" Value="5,2"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-        </Style>
-    </Window.Resources>
     <Window.DataContext>
-        <viewmodel:MainViewModel/>
+        <vm:MainViewModel />
     </Window.DataContext>
-    
+
     <Window.InputBindings>
         <KeyBinding Key="F7" Command="{Binding DeleteCommand}" />
         <KeyBinding Key="F10" Command="{Binding CancelCommand}" />
         <KeyBinding Key="F12" Command="{Binding SaveCommand}" />
     </Window.InputBindings>
 
+    <!-- リソース定義：画面全体で使用するスタイルなど -->
+    <Window.Resources>
+        <!-- ブール値を可視性 (Visible/Collapsed) に変換するコンバーター -->
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        
+        <!-- 入力フィールドのヘッダー（青背景）に使用するスタイル -->
+        <Style x:Key="HeaderBorder" TargetType="Border">
+            <Setter Property="Background" Value="#808080" />
+            <Setter Property="BorderBrush" Value="#A0A0A0" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Padding" Value="5,2" />
+        </Style>
+        <!-- ヘッダー内のテキスト用スタイル -->
+        <Style x:Key="HeaderText" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="FontSize" Value="13" />
+        </Style>
+        <!-- 入力用テキストボックスのスタイル：フォーカス時に背景を黄色にする -->
+        <Style x:Key="InputTextBox" TargetType="TextBox">
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="Padding" Value="2" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="BorderBrush" Value="#A0A0A0" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Style.Triggers>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="Background" Value="Yellow" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <!-- 下部ファンクションボタン用のスタイル -->
+        <Style x:Key="FuncButton" TargetType="Button">
+            <Setter Property="Margin" Value="2" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+        </Style>
+    </Window.Resources>
+
     <Grid Margin="10">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/> <!-- (不使用) -->
+            <RowDefinition Height="Auto"/> <!-- 入力エリア -->
+            <RowDefinition Height="*"/>    <!-- 一覧エリア -->
+            <RowDefinition Height="Auto"/> <!-- フッター（ファンクションキー） -->
         </Grid.RowDefinitions>
 
-        <!-- 入力エリア (ラベル付き) -->
-        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,20">
-            <!-- コード -->
-            <StackPanel Margin="0,0,10,0">
-                <Border Background="#808080" BorderBrush="Black" BorderThickness="1,1,1,0" Padding="5,2">
-                    <TextBlock Text="コード" Foreground="White" FontWeight="Bold" Width="80"/>
-                </Border>
-                <Border BorderBrush="Black" BorderThickness="1">
-                    <TextBox Text="{Binding InputCode, UpdateSourceTrigger=PropertyChanged}" 
-                             Background="Yellow" Width="92" Height="25" VerticalContentAlignment="Center" BorderThickness="0"/>
-                </Border>
-            </StackPanel>
+        <!-- 入力エリア：コード、名称、略称の入力フィールド -->
+        <Grid Grid.Row="1" Margin="20,20,20,20" HorizontalAlignment="Left">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="90"/>  <!-- コード用 -->
+                <ColumnDefinition Width="380"/> <!-- 名称用 -->
+                <ColumnDefinition Width="120"/> <!-- 略称用 -->
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="22" /> <!-- ラベル行 -->
+                <RowDefinition Height="24" /> <!-- 入力行 -->
+            </Grid.RowDefinitions>
 
-            <!-- 名称 -->
-            <StackPanel Margin="0,0,10,0">
-                <Border Background="#808080" BorderBrush="Black" BorderThickness="1,1,1,0" Padding="5,2">
-                    <TextBlock Text="名称" Foreground="White" FontWeight="Bold" Width="300"/>
-                </Border>
-                <Border BorderBrush="Black" BorderThickness="1">
-                    <TextBox Text="{Binding InputName, UpdateSourceTrigger=PropertyChanged}" 
-                             Width="312" Height="25" VerticalContentAlignment="Center" BorderThickness="0"/>
-                </Border>
-            </StackPanel>
+            <!-- 各入力項目の見出し -->
+            <Border Grid.Row="0" Grid.Column="0" Style="{StaticResource HeaderBorder}">
+                <TextBlock Text="コード" Style="{StaticResource HeaderText}" />
+            </Border>
+            <Border Grid.Row="0" Grid.Column="1" Style="{StaticResource HeaderBorder}" Margin="-1,0,0,0">
+                <TextBlock Text="名称" Style="{StaticResource HeaderText}" />
+            </Border>
+            <Border Grid.Row="0" Grid.Column="2" Style="{StaticResource HeaderBorder}" Margin="-1,0,0,0">
+                <TextBlock Text="略称" Style="{StaticResource HeaderText}" />
+            </Border>
 
-            <!-- 略称 -->
-            <StackPanel>
-                <Border Background="#808080" BorderBrush="Black" BorderThickness="1,1,1,0" Padding="5,2">
-                    <TextBlock Text="略称" Foreground="White" FontWeight="Bold" Width="120"/>
-                </Border>
-                <Border BorderBrush="Black" BorderThickness="1">
-                    <TextBox Text="{Binding InputAbbreviation, UpdateSourceTrigger=PropertyChanged}" 
-                             Width="132" Height="25" VerticalContentAlignment="Center" BorderThickness="0"/>
-                </Border>
-            </StackPanel>
-        </StackPanel>
+            <!-- 各入力項目のテキストボックス -->
+            <TextBox Grid.Row="1" Grid.Column="0" Text="{Binding InputCode, UpdateSourceTrigger=PropertyChanged}" 
+                      IsEnabled="{Binding IsCodeEnabled}" Style="{StaticResource InputTextBox}" Margin="0,-1,0,0" Foreground="Blue"/>
+            
+            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding InputName, UpdateSourceTrigger=PropertyChanged}" 
+                      MaxLength="20" Style="{StaticResource InputTextBox}" Margin="-1,-1,0,0"/>
 
-        <!-- 一覧エリア -->
-        <DataGrid Grid.Row="1" ItemsSource="{Binding Jobs}" SelectedItem="{Binding SelectedJob}" 
+            <TextBox Grid.Row="1" Grid.Column="2" Text="{Binding InputAbbreviation, UpdateSourceTrigger=PropertyChanged}" 
+                      MaxLength="6" Style="{StaticResource InputTextBox}" Margin="-1,-1,0,0"/>
+        </Grid>
+
+        <!-- 一覧表示エリア -->
+        <DataGrid Grid.Row="2" Margin="20,0,20,10" ItemsSource="{Binding Jobs}" SelectedItem="{Binding SelectedJob}"
                   AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" 
-                  SelectionMode="Single" SelectionUnit="FullRow"
-                  GridLinesVisibility="All" Background="White" RowHeaderWidth="0">
+                  HeadersVisibility="Column" SelectionMode="Single"
+                  Background="White" RowBackground="White" AlternatingRowBackground="White"
+                  BorderBrush="#A0A0A0" BorderThickness="1" GridLinesVisibility="All" HorizontalGridLinesBrush="#E0E0E0" VerticalGridLinesBrush="#E0E0E0"
+                  HorizontalAlignment="Left" Width="610">
+            <!-- ダブルクリックで編集開始するバインディングを追加 -->
+            <DataGrid.InputBindings>
+                <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding DoubleClickCommand}"/>
+            </DataGrid.InputBindings>
+            
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="Background" Value="White" />
+                    <Setter Property="BorderBrush" Value="#A0A0A0" />
+                    <Setter Property="BorderThickness" Value="0,0,1,1" />
+                    <Setter Property="Padding" Value="4" />
+                    <Setter Property="FontSize" Value="13" />
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
             <DataGrid.Columns>
-                <DataGridTextColumn Header="コード" Binding="{Binding C_JobCode}" Width="100"/>
-                <DataGridTextColumn Header="名称" Binding="{Binding C_JobName}" Width="*"/>
-                <DataGridTextColumn Header="略称" Binding="{Binding C_JobAbbreviationName}" Width="150"/>
+                <DataGridTextColumn Header="コード" Binding="{Binding C_JobCode}" Width="90"/>
+                <DataGridTextColumn Header="名称" Binding="{Binding C_JobName}" Width="380"/>
+                <DataGridTextColumn Header="略称" Binding="{Binding C_JobAbbreviationName}" Width="120"/>
             </DataGrid.Columns>
         </DataGrid>
 
-        <!-- フッターエリア (ファンクションキー) -->
-        <UniformGrid Grid.Row="2" Columns="12" Margin="0,15,0,0">
-            <Button Content="F1" IsEnabled="False" Style="{StaticResource FKeyStyle}"/>
-            <Button Content="F2" IsEnabled="False" Style="{StaticResource FKeyStyle}"/>
-            <Button Content="F3" IsEnabled="False" Style="{StaticResource FKeyStyle}"/>
-            <Button Content="F4" IsEnabled="False" Style="{StaticResource FKeyStyle}"/>
-            <Button Content="F5" IsEnabled="False" Style="{StaticResource FKeyStyle}"/>
-            <Button Content="F6" IsEnabled="False" Style="{StaticResource FKeyStyle}"/>
-            <Button Command="{Binding DeleteCommand}" Style="{StaticResource FKeyStyle}">
-                <StackPanel>
-                    <TextBlock Text="F7" HorizontalAlignment="Center"/>
-                    <TextBlock Text="削除" HorizontalAlignment="Center"/>
-                </StackPanel>
-            </Button>
-            <Button Content="F8" IsEnabled="False" Style="{StaticResource FKeyStyle}"/>
-            <Button Content="F9" IsEnabled="False" Style="{StaticResource FKeyStyle}"/>
-            <Button Command="{Binding CancelCommand}" Style="{StaticResource FKeyStyle}">
-                <StackPanel>
-                    <TextBlock Text="F10" HorizontalAlignment="Center"/>
-                    <TextBlock Text="中止" HorizontalAlignment="Center"/>
-                </StackPanel>
-            </Button>
-            <Button Content="F11" IsEnabled="False" Style="{StaticResource FKeyStyle}"/>
-            <Button Command="{Binding SaveCommand}" Style="{StaticResource FKeyStyle}">
-                <StackPanel>
-                    <TextBlock Text="F12" HorizontalAlignment="Center"/>
-                    <TextBlock Text="登録" HorizontalAlignment="Center"/>
-                </StackPanel>
-            </Button>
-        </UniformGrid>
+        <!-- フッターエリア：ボタンスタイルと表示制御の更新 -->
+        <Grid Grid.Row="3" Margin="0,5,0,0">
+            <UniformGrid Rows="1" Columns="12" Height="45">
+                <Button Style="{StaticResource FuncButton}" IsEnabled="False">
+                    <TextBlock Text="[F1]" Foreground="Gray" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="2,2,0,0" FontSize="10"/>
+                </Button>
+                <Button Style="{StaticResource FuncButton}" IsEnabled="False">
+                    <TextBlock Text="[F2]" Foreground="Gray" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="2,2,0,0" FontSize="10"/>
+                </Button>
+                <Button Style="{StaticResource FuncButton}" IsEnabled="False">
+                    <TextBlock Text="[F3]" Foreground="Gray" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="2,2,0,0" FontSize="10"/>
+                </Button>
+                <Button Style="{StaticResource FuncButton}" IsEnabled="False">
+                    <TextBlock Text="[F4]" Foreground="Gray" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="2,2,0,0" FontSize="10"/>
+                </Button>
+                <Button Style="{StaticResource FuncButton}" IsEnabled="False">
+                    <TextBlock Text="[F5]" Foreground="Gray" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="2,2,0,0" FontSize="10"/>
+                </Button>
+                <Button Style="{StaticResource FuncButton}" IsEnabled="False">
+                    <TextBlock Text="[F6]" Foreground="Gray" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="2,2,0,0" FontSize="10"/>
+                </Button>
+                
+                <!-- F7：削除（入力・選択中のみ表示） -->
+                <Button Style="{StaticResource FuncButton}" Command="{Binding DeleteCommand}"
+                        Visibility="{Binding IsActionButtonsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <Grid>
+                        <TextBlock Text="[F7]" Foreground="Black" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="10" Margin="-5,-5,0,0"/>
+                        <TextBlock Text="削除" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                    </Grid>
+                </Button>
+                <Button Style="{StaticResource FuncButton}" IsEnabled="False">
+                    <TextBlock Text="[F8]" Foreground="Gray" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="2,2,0,0" FontSize="10"/>
+                </Button>
+                <Button Style="{StaticResource FuncButton}" IsEnabled="False">
+                    <TextBlock Text="[F9]" Foreground="Gray" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="2,2,0,0" FontSize="10"/>
+                </Button>
+                
+                <!-- F10：中止（入力・選択中のみ表示） -->
+                <Button Style="{StaticResource FuncButton}" Command="{Binding CancelCommand}"
+                        Visibility="{Binding IsActionButtonsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <Grid>
+                        <TextBlock Text="[F10]" Foreground="Black" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="10" Margin="-5,-5,0,0"/>
+                        <TextBlock Text="中止" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                    </Grid>
+                </Button>
+                <Button Style="{StaticResource FuncButton}" IsEnabled="False">
+                    <TextBlock Text="[F11]" Foreground="Gray" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="2,2,0,0" FontSize="10"/>
+                </Button>
+                
+                <!-- F12：登録 または 閉じる（テキストを動的に切り替え） -->
+                <Button Style="{StaticResource FuncButton}" Command="{Binding SaveCommand}">
+                    <Grid>
+                        <TextBlock Text="[F12]" Foreground="Black" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="10" Margin="-5,-5,0,0"/>
+                        <TextBlock Text="{Binding SaveOrCloseButtonText}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                    </Grid>
+                </Button>
+            </UniformGrid>
+        </Grid>
     </Grid>
 </Window>
