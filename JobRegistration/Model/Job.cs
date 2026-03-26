@@ -4,17 +4,18 @@ using System.ComponentModel;
 namespace JobRegistration.Model
 {
     /// <summary>
-    /// 職種情報を表すモデル
+    /// 職種の一つのエンティティ（データ行）を表すモデルクラスです。
+    /// INotifyPropertyChanged を実装しており、プロパティ変更をUIに通知します。
     /// </summary>
     public class Job : INotifyPropertyChanged
     {
-        private int _jobId;
-        private int? _jobCode;
-        private string? _jobName;
-        private string? _jobAbbreviationName;
+        private int _jobId;                 // 内部管理用ID
+        private int? _jobCode;              // 職種コード
+        private string? _jobName;           // 職種名称
+        private string? _jobAbbreviationName; // 職種略称
 
         /// <summary>
-        /// 職種ID (内部管理用)
+        /// データベース上の主キー (C_JobID)。自動採番されます。
         /// </summary>
         public int C_JobID
         {
@@ -27,7 +28,7 @@ namespace JobRegistration.Model
         }
 
         /// <summary>
-        /// 職種コード
+        /// 職種コード。一意の識別番号として使用されます。
         /// </summary>
         public int? C_JobCode
         {
@@ -40,7 +41,7 @@ namespace JobRegistration.Model
         }
 
         /// <summary>
-        /// 職種名称
+        /// 職種の正式名称。
         /// </summary>
         public string? C_JobName
         {
@@ -53,7 +54,7 @@ namespace JobRegistration.Model
         }
 
         /// <summary>
-        /// 職種略称
+        /// 職種の略称。画面表示や帳票などで使用されます。
         /// </summary>
         public string? C_JobAbbreviationName
         {
@@ -65,7 +66,15 @@ namespace JobRegistration.Model
             }
         }
 
+        /// <summary>
+        /// プロパティ値が変更されたときに発生するイベント
+        /// </summary>
         public event PropertyChangedEventHandler? PropertyChanged;
+
+        /// <summary>
+        /// プロパティ変更通知を発行します。
+        /// </summary>
+        /// <param name="propertyName">プロパティ名</param>
         protected virtual void OnPropertyChanged(string propertyName) =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
