@@ -28,7 +28,7 @@
               "RelativeDocumentMoniker": "Common\\DelegateCommand.cs",
               "ToolTip": "C:\\Users\\aokada\\Documents\\MyProject\\Work\\04_\u962A\u5357\u30D3\u30B8\u30CD\u30B9\u30DE\u30B7\u30F3\\src\\BugyoCustomize\\JobRegistration\\Common\\DelegateCommand.cs",
               "RelativeToolTip": "Common\\DelegateCommand.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACsAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAkwCsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-25T08:47:10.504Z",
               "EditorCaption": ""
@@ -43,8 +43,7 @@
               "RelativeToolTip": "Model\\JobRepository.cs",
               "ViewState": "AgIAACcAAAAAAAAAAAAIwBwAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-25T08:46:23.644Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-25T08:46:23.644Z"
             }
           ]
         }

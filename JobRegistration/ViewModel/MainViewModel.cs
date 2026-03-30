@@ -29,10 +29,10 @@ namespace JobRegistration.ViewModel
         private bool _isInputStarted; // 入力開始または選択中フラグ
 
         /// <summary>
-        /// アクションボタン（削除・中止）を表示するかどうか
+        /// アクションボタン（削除・中止）を活性化するかどうか
         /// 何かを入力中、または一覧でデータを選択しているときに true になります。
         /// </summary>
-        public bool IsActionButtonsVisible => _isInputStarted;
+        public bool IsActionButtonsEnabled => _isInputStarted;
 
         /// <summary>
         /// 登録ボタンに表示するテキスト
@@ -154,7 +154,7 @@ namespace JobRegistration.ViewModel
             if (_isInputStarted != started)
             {
                 _isInputStarted = started;
-                OnPropertyChanged(nameof(IsActionButtonsVisible));
+                OnPropertyChanged(nameof(IsActionButtonsEnabled));
                 OnPropertyChanged(nameof(SaveOrCloseButtonText));
             }
         }

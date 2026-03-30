@@ -23,8 +23,7 @@
 
     <!-- リソース定義：画面全体で使用するスタイルなど -->
     <Window.Resources>
-        <!-- ブール値を可視性 (Visible/Collapsed) に変換するコンバーター -->
-        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <!-- ブール値を活性状態に変換するためのコンバーターは不要（IsEnabledに直接バインド可能） -->
         
         <!-- 入力フィールドのヘッダー（青背景）に使用するスタイル -->
         <Style x:Key="HeaderBorder" TargetType="Border">
@@ -152,9 +151,9 @@
                     <TextBlock Text="[F6]" Foreground="Gray" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="2,2,0,0" FontSize="10"/>
                 </Button>
                 
-                <!-- F7：削除（入力・選択中のみ表示） -->
+                <!-- F7：削除（入力・選択中のみ活性） -->
                 <Button Style="{StaticResource FuncButton}" Command="{Binding DeleteCommand}"
-                        Visibility="{Binding IsActionButtonsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        IsEnabled="{Binding IsActionButtonsEnabled}">
                     <Grid>
                         <TextBlock Text="[F7]" Foreground="Black" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="10" Margin="-5,-5,0,0"/>
                         <TextBlock Text="削除" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,10,0,0"/>
@@ -167,9 +166,9 @@
                     <TextBlock Text="[F9]" Foreground="Gray" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="2,2,0,0" FontSize="10"/>
                 </Button>
                 
-                <!-- F10：中止（入力・選択中のみ表示） -->
+                <!-- F10：中止（入力・選択中のみ活性） -->
                 <Button Style="{StaticResource FuncButton}" Command="{Binding CancelCommand}"
-                        Visibility="{Binding IsActionButtonsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        IsEnabled="{Binding IsActionButtonsEnabled}">
                     <Grid>
                         <TextBlock Text="[F10]" Foreground="Black" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="10" Margin="-5,-5,0,0"/>
                         <TextBlock Text="中止" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,10,0,0"/>
