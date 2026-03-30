@@ -1,0 +1,188 @@
+<Window x:Class="DayKindRegistration.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DayKindRegistration"
+        xmlns:vm="clr-namespace:DayKindRegistration.ViewModel"
+        mc:Ignorable="d"
+        Title="日種類登録" Height="550" Width="800"
+        WindowStartupLocation="CenterScreen"
+        Background="#F0F0F0"
+        ResizeMode="NoResize">
+
+    <Window.DataContext>
+        <vm:DayKindRegistrationViewModel />
+    </Window.DataContext>
+
+    <Window.InputBindings>
+        <KeyBinding Key="F7" Command="{Binding DeleteCommand}" />
+        <KeyBinding Key="F10" Command="{Binding CancelCommand}" />
+        <KeyBinding Key="F12" Command="{Binding RegisterCommand}" />
+    </Window.InputBindings>
+
+    <Window.Resources>
+        <Style x:Key="HeaderBorder" TargetType="Border">
+            <Setter Property="Background" Value="#808080" />
+            <Setter Property="BorderBrush" Value="#A0A0A0" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Padding" Value="5,2" />
+        </Style>
+        <Style x:Key="HeaderText" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="FontSize" Value="13" />
+        </Style>
+        <Style x:Key="InputTextBox" TargetType="TextBox">
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="Padding" Value="2" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="BorderBrush" Value="#A0A0A0" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Style.Triggers>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="Background" Value="Yellow" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="FuncButton" TargetType="Button">
+            <Setter Property="Margin" Value="2" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Input Area -->
+        <Grid Grid.Row="1" Margin="20,20,20,20" HorizontalAlignment="Left">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="90"/>
+                <ColumnDefinition Width="380"/>
+                <ColumnDefinition Width="120"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="22" />
+                <RowDefinition Height="24" />
+            </Grid.RowDefinitions>
+
+            <!-- Headers -->
+            <Border Grid.Row="0" Grid.Column="0" Style="{StaticResource HeaderBorder}">
+                <TextBlock Text="コード" Style="{StaticResource HeaderText}" />
+            </Border>
+            <Border Grid.Row="0" Grid.Column="1" Style="{StaticResource HeaderBorder}" Margin="-1,0,0,0">
+                <TextBlock Text="名称" Style="{StaticResource HeaderText}" />
+            </Border>
+            <Border Grid.Row="0" Grid.Column="2" Style="{StaticResource HeaderBorder}" Margin="-1,0,0,0">
+                <TextBlock Text="略称" Style="{StaticResource HeaderText}" />
+            </Border>
+
+            <!-- Inputs -->
+            <!-- UpdateSourceTrigger=LostFocus is used so OnCodeChanged triggers accurately upon enter/loss focus -->
+            <TextBox Grid.Row="1" Grid.Column="0" Text="{Binding CodeText, UpdateSourceTrigger=LostFocus}" 
+                     IsEnabled="{Binding IsCodeEnabled}" Style="{StaticResource InputTextBox}" Margin="0,-1,0,0" Foreground="Blue"/>
+            
+            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding NameText, UpdateSourceTrigger=PropertyChanged}" 
+                     MaxLength="20" Style="{StaticResource InputTextBox}" Margin="-1,-1,0,0"/>
+
+            <TextBox Grid.Row="1" Grid.Column="2" Text="{Binding AbbreviationText, UpdateSourceTrigger=PropertyChanged}" 
+                     MaxLength="10" Style="{StaticResource InputTextBox}" Margin="-1,-1,0,0"/>
+        </Grid>
+
+        <!-- DataGrid Area -->
+        <DataGrid Grid.Row="2" Margin="20,0,20,10" ItemsSource="{Binding DayKinds}" SelectedItem="{Binding SelectedDayKind}"
+                  AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" 
+                  HeadersVisibility="Column" SelectionMode="Single"
+                  Background="White" RowBackground="White" AlternatingRowBackground="White"
+                  BorderBrush="#A0A0A0" BorderThickness="1" GridLinesVisibility="All" HorizontalGridLinesBrush="#E0E0E0" VerticalGridLinesBrush="#E0E0E0"
+                  HorizontalAlignment="Left" Width="610">
+            <DataGrid.InputBindings>
+                <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding SelectCommand}" />
+            </DataGrid.InputBindings>
+            <!-- Styling DataGrid Headers to match look -->
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="Background" Value="White" />
+                    <Setter Property="BorderBrush" Value="#A0A0A0" />
+                    <Setter Property="BorderThickness" Value="0,0,1,1" />
+                    <Setter Property="Padding" Value="4" />
+                    <Setter Property="FontSize" Value="13" />
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="コード" Binding="{Binding FormattedCode}" Width="90"/>
+                <DataGridTextColumn Header="名称" Binding="{Binding DayKindName}" Width="380"/>
+                <DataGridTextColumn Header="略称" Binding="{Binding DayKindAbbreviationName}" Width="120"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- Function Key Bar -->
+        <Grid Grid.Row="3" Margin="0,5,0,0">
+            <UniformGrid Rows="1" Columns="12" Height="45">
+                <!-- F1 -->
+                <Button Style="{StaticResource FuncButton}" IsEnabled="False">
+                    <TextBlock Text="[F1]" Foreground="Gray" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="2,2,0,0" FontSize="10"/>
+                </Button>
+                <!-- F2 -->
+                <Button Style="{StaticResource FuncButton}" IsEnabled="False">
+                    <TextBlock Text="[F2]" Foreground="Gray" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="2,2,0,0" FontSize="10"/>
+                </Button>
+                <!-- F3 -->
+                <Button Style="{StaticResource FuncButton}" IsEnabled="False">
+                    <TextBlock Text="[F3]" Foreground="Gray" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="2,2,0,0" FontSize="10"/>
+                </Button>
+                <!-- F4 -->
+                <Button Style="{StaticResource FuncButton}" IsEnabled="False">
+                    <TextBlock Text="[F4]" Foreground="Gray" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="2,2,0,0" FontSize="10"/>
+                </Button>
+                <!-- F5 -->
+                <Button Style="{StaticResource FuncButton}" IsEnabled="False">
+                    <TextBlock Text="[F5]" Foreground="Gray" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="2,2,0,0" FontSize="10"/>
+                </Button>
+                <!-- F6 -->
+                <Button Style="{StaticResource FuncButton}" IsEnabled="False">
+                    <TextBlock Text="[F6]" Foreground="Gray" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="2,2,0,0" FontSize="10"/>
+                </Button>
+                <!-- F7 -->
+                <Button Style="{StaticResource FuncButton}" Command="{Binding DeleteCommand}" IsEnabled="{Binding IsDeleteCancelEnabled}">
+                    <Grid>
+                        <TextBlock Text="[F7]" Foreground="Black" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="10" Margin="-5,-5,0,0"/>
+                        <TextBlock Text="削除" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                    </Grid>
+                </Button>
+                <!-- F8 -->
+                <Button Style="{StaticResource FuncButton}" IsEnabled="False">
+                    <TextBlock Text="[F8]" Foreground="Gray" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="2,2,0,0" FontSize="10"/>
+                </Button>
+                <!-- F9 -->
+                <Button Style="{StaticResource FuncButton}" IsEnabled="False">
+                    <TextBlock Text="[F9]" Foreground="Gray" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="2,2,0,0" FontSize="10"/>
+                </Button>
+                <!-- F10 -->
+                <Button Style="{StaticResource FuncButton}" Command="{Binding CancelCommand}" IsEnabled="{Binding IsDeleteCancelEnabled}">
+                    <Grid>
+                        <TextBlock Text="[F10]" Foreground="Black" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="10" Margin="-5,-5,0,0"/>
+                        <TextBlock Text="中止" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                    </Grid>
+                </Button>
+                <!-- F11 -->
+                <Button Style="{StaticResource FuncButton}" IsEnabled="False">
+                    <TextBlock Text="[F11]" Foreground="Gray" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="2,2,0,0" FontSize="10"/>
+                </Button>
+                <!-- F12 -->
+                <Button Style="{StaticResource FuncButton}" Command="{Binding RegisterCommand}">
+                    <Grid>
+                        <TextBlock Text="[F12]" Foreground="Black" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="10" Margin="-5,-5,0,0"/>
+                        <TextBlock Text="{Binding RegisterButtonText}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                    </Grid>
+                </Button>
+            </UniformGrid>
+        </Grid>
+    </Grid>
+</Window>
