@@ -1,0 +1,36 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\aokada\\Documents\\MyProject\\Work\\04_\u962A\u5357\u30D3\u30B8\u30CD\u30B9\u30DE\u30B7\u30F3\\src\\BugyoCustomize\\main\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{73BA815E-9121-6666-727F-20296AE082C9}|AttendanceSystem\\AttendanceSystem.csproj|c:\\users\\aokada\\documents\\myproject\\work\\04_\u962A\u5357\u30D3\u30B8\u30CD\u30B9\u30DE\u30B7\u30F3\\src\\bugyocustomize\\main\\attendancesystem\\views\\jobview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{73BA815E-9121-6666-727F-20296AE082C9}|AttendanceSystem\\AttendanceSystem.csproj|solutionrelative:attendancesystem\\views\\jobview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "JobView.xaml",
+              "DocumentMoniker": "C:\\Users\\aokada\\Documents\\MyProject\\Work\\04_\u962A\u5357\u30D3\u30B8\u30CD\u30B9\u30DE\u30B7\u30F3\\src\\BugyoCustomize\\main\\AttendanceSystem\\Views\\JobView.xaml",
+              "RelativeDocumentMoniker": "AttendanceSystem\\Views\\JobView.xaml",
+              "ToolTip": "C:\\Users\\aokada\\Documents\\MyProject\\Work\\04_\u962A\u5357\u30D3\u30B8\u30CD\u30B9\u30DE\u30B7\u30F3\\src\\BugyoCustomize\\main\\AttendanceSystem\\Views\\JobView.xaml",
+              "RelativeToolTip": "AttendanceSystem\\Views\\JobView.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-04-02T02:58:16.605Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,4 +1,7 @@
+using System;
+using System.IO;
 using System.Data.SqlClient;
+using System.Windows;
 
 namespace JobRegistration.Model
 {
@@ -8,14 +11,49 @@ namespace JobRegistration.Model
     /// </summary>
     public class JobRepository
     {
-        // データベース接続文字列（ユーザー環境のSQL Server Expressインスタンスを指定）
-        private readonly string _connectionString = "Server=AOKADA-PC\\SQLEXPRESS;Database=SKI_AttendanceDB;User ID=sa;Password=Sqlserver2022;TrustServerCertificate=True";
+        // データベース接続文字列（外部ファイルから取得するように変更）
+        private readonly string _connectionString;
+
+        /// <summary>
+        /// 実行ディレクトリから親を辿って sqlsrv.txt を探し、接続情報を読み込みます。
+        /// </summary>
+        private string LoadConnectionString()
+        {
+            try
+            {
+                // 実行ディレクトリから親を辿って探しに行く（実環境とビルド出力先両方に対応するため）
+                var dir = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory);
+                while (dir != null)
+                {
+                    // 1. 同一フォルダ内
+                    string path1 = Path.Combine(dir.FullName, "sqlsrv.txt");
+                    if (File.Exists(path1)) return File.ReadAllText(path1).Trim();
+
+                    // 2. BugyoCustomize フォルダ内（開発時のディレクトリ構成に合わせる）
+                    string path2 = Path.Combine(dir.FullName, "BugyoCustomize", "sqlsrv.txt");
+                    if (File.Exists(path2)) return File.ReadAllText(path2).Trim();
+
+                    dir = dir.Parent;
+                }
+            }
+            catch (Exception ex)
+            {
+                // 読み込み失敗時は警告を表示してフォールバックへ
+                MessageBox.Show($"接続情報の読み込み中にエラーが発生しました: {ex.Message}", "構成エラー", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+
+            // 見つからない場合のフォールバック（以前の設定）
+            return "Server=AOKADA-PC\\SQLEXPRESS;Database=SKI_AttendanceDB;User ID=sa;Password=Sqlserver2022;TrustServerCertificate=True";
+        }
 
         /// <summary>
         /// コンストラクタ。クラス生成時にデータベースの準備状態を確認します。
         /// </summary>
         public JobRepository()
         {
+            // 接続文字列を外部ファイルから優先取得
+            _connectionString = LoadConnectionString();
+
             // 起動時にテーブルが存在するか確認し、なければ作成または修復する
             EnsureTableCreated();
         }

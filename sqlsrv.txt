@@ -1,0 +1,1 @@
+Server=AOKADA-PC\SQLEXPRESS;Database=SKI_AttendanceDB;User Id=sa;Password=Sqlserver2022;TrustServerCertificate=True;
