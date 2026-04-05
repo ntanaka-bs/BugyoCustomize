@@ -1,4 +1,4 @@
-﻿using AttendanceSystem.Models;
+using AttendanceSystem.Models;
 using System.Data.SqlClient;
 
 namespace AttendanceSystem.Models
@@ -9,7 +9,7 @@ namespace AttendanceSystem.Models
     /// </summary>
     public class DayKindDatabaseHelper
     {
-        // データベース接続文字列（外部ファイルから取得するように変更）
+        // データベース接続文字列（外部ファイルから取得）
         private readonly string _connectionString;
 
         /// <summary>
@@ -17,7 +17,7 @@ namespace AttendanceSystem.Models
         /// </summary>
         public DayKindDatabaseHelper()
         {
-            _connectionString = LoadConnectionString();
+            _connectionString = AttendanceSystem.Common.DatabaseConfig.ConnectionString;
             EnsureTableExists();
             SeedInitialData(); // サンプルデータの投入
         }
@@ -51,52 +51,7 @@ namespace AttendanceSystem.Models
             }
         }
 
-        /// <summary>
-        /// 指定されたパス、または実行ディレクトリから親を辿って sqlsrv.txt を探し、接続情報を読み込みます。
-        /// </summary>
-        private string LoadConnectionString()
-        {
-            string foundPath = null;
-            try
-            {
-                // 1. 指定された絶対パスを優先的にチェック
-                string specificPath = @"C:\Users\aokada\Documents\MyProject\Work\04_阪南ビジネスマシン\src\BugyoCustomize\sqlsrv.txt";
-                if (System.IO.File.Exists(specificPath))
-                {
-                    foundPath = specificPath;
-                }
-                else
-                {
-                    // 2. 見つからない場合は実行ディレクトリから親を辿って探す（動的対応）
-                    var dir = new System.IO.DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory);
-                    while (dir != null)
-                    {
-                        string path = System.IO.Path.Combine(dir.FullName, "sqlsrv.txt");
-                        if (System.IO.File.Exists(path))
-                        {
-                            foundPath = path;
-                            break;
-                        }
-                        dir = dir.Parent;
-                    }
-                }
 
-                if (foundPath != null)
-                {
-                    string content = System.IO.File.ReadAllText(foundPath).Trim();
-                    // どのパスから読み込んだかログとして（必要に応じてメッセージボックスで）確認可能
-                    // System.Windows.MessageBox.Show($"接続情報を読み込みました: {foundPath}"); 
-                    return content;
-                }
-            }
-            catch (Exception ex)
-            {
-                System.Windows.MessageBox.Show($"接続情報の読み込み中にエラーが発生しました: {ex.Message}");
-            }
-
-            // 見つからない場合の最終的なフォールバック（以前の設定）
-            return @"Server=AOKADA-PC\SQLEXPRESS;Database=SKI_AttendanceDB;User Id=sa;Password=Sqlserver2022;TrustServerCertificate=True;";
-        }
 
         /// <summary>
         /// SQL Server への接続オブジェクトを取得します。

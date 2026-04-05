@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 
@@ -12,7 +12,7 @@ namespace AttendanceSystem.Models
         /// <summary>
         /// DB接続文字列
         /// </summary>
-        private readonly string _connectionString = @"Server=NTANAKA-PC\SQLEXPRESS;Database=TestApp1;User Id=tanaka;Password=admin;TrustServerCertificate=True;";
+        private readonly string _connectionString = AttendanceSystem.Common.DatabaseConfig.ConnectionString;
 
         /// <summary>
         /// 初期化 (テーブル作成確認)

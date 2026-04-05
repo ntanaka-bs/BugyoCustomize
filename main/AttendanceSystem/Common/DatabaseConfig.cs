@@ -1,4 +1,6 @@
-﻿using System;
+using System;
+using System.IO;
+using Microsoft.Extensions.Configuration;
 
 namespace AttendanceSystem.Common
 {
@@ -8,10 +10,24 @@ namespace AttendanceSystem.Common
     /// </summary>
     public static class DatabaseConfig
     {
-        // サーバー名：AOKADA-PC\SQLEXPRESS
-        // ログイン：sa
-        // パスワード：Sqlserver2022
-        // 接続するDB：SKI_AttendanceDB
-        public static readonly string ConnectionString = @"Server=AOKADA-PC\SQLEXPRESS;Database=SKI_AttendanceDB;User Id=sa;Password=Sqlserver2022;TrustServerCertificate=True;";
+        /// <summary>
+        /// データベースの接続文字列
+        /// </summary>
+        public static readonly string ConnectionString;
+
+        /// <summary>
+        /// appsettings.json および appsettings.local.json から接続文字列を読み込みます。
+        /// </summary>
+        static DatabaseConfig()
+        {
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                .AddJsonFile("appsettings.local.json", optional: true, reloadOnChange: true);
+
+            IConfiguration configuration = builder.Build();
+            ConnectionString = configuration.GetConnectionString("DefaultConnection") 
+                               ?? throw new InvalidOperationException("DefaultConnection is not configured.");
+        }
     }
 }

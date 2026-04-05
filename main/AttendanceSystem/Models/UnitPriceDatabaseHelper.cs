@@ -1,15 +1,13 @@
-﻿using System;
+using System;
 using System.Data.SqlClient;
 
 namespace AttendanceSystem.Models
 {
     public static class UnitPriceDatabaseHelper
     {
-        public const string ConnectionString = @"Server=NTANAKA-PC\SQLEXPRESS;Database=TestApp1;User Id=tanaka;Password=admin;TrustServerCertificate=True;";
-
         public static SqlConnection GetConnection()
         {
-            return new SqlConnection(ConnectionString);
+            return new SqlConnection(AttendanceSystem.Common.DatabaseConfig.ConnectionString);
         }
 
         public static void EnsureTablesCreated()
