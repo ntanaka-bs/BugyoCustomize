@@ -1,6 +1,7 @@
-﻿using System.Windows;
+using System.Windows;
 using System.Windows.Input;
 using AttendanceSystem.ViewModels;
+using AttendanceSystem.Common;
 
 namespace AttendanceSystem.Views
 {
@@ -16,6 +17,15 @@ namespace AttendanceSystem.Views
             
             // ViewModel を DataContext に設定
             var vm = new DayKindRegistrationViewModel(); this.DataContext = vm; vm.RequestClose += () => this.Close();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            var result = MessageBox.Show(MessageConfig.ConfirmClose, MessageConfig.TitleConfirm, MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.No)
+            {
+                e.Cancel = true;
+            }
         }
 
         /// <summary>

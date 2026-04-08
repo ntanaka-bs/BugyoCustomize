@@ -1,4 +1,5 @@
 using System.Windows;
+using AttendanceSystem.Common;
 
 namespace AttendanceSystem.Views
 {
@@ -31,6 +32,14 @@ namespace AttendanceSystem.Views
         {
             var view = new UnitPriceView();
             view.ShowDialog();
+        }
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            var result = MessageBox.Show(MessageConfig.ConfirmClose, MessageConfig.TitleConfirm, MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.No)
+            {
+                e.Cancel = true;
+            }
         }
     }
 }

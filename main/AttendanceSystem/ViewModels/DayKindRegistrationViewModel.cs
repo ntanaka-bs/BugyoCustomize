@@ -1,11 +1,9 @@
-﻿using System;
+using System;
 using AttendanceSystem.Common;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
-using AttendanceSystem.Common;
-using AttendanceSystem.Models;
 using AttendanceSystem.Models;
 
 namespace AttendanceSystem.ViewModels
@@ -27,10 +25,10 @@ namespace AttendanceSystem.ViewModels
         private DayKind? _selectedDayKind;
         private ObservableCollection<DayKind> _dayKinds = new();
         
-        private string _registerButtonText = "閉じる";
+        private string _registerButtonText = MessageConfig.BtnClose;
         private bool _isDeleteCancelEnabled = false;
         private bool _isEditMode = false;
-
+ 
         /// <summary>
         /// コンストラクタ。DBヘルパーの初期化とコマンドの生成、初期データのロードを行います。
         /// </summary>
@@ -206,7 +204,7 @@ namespace AttendanceSystem.ViewModels
             {
                 if (SetProperty(ref _isEditMode, value))
                 {
-                    RegisterButtonText = value ? "登録" : "閉じる";
+                    RegisterButtonText = value ? MessageConfig.BtnRegister : MessageConfig.BtnClose;
                     IsDeleteCancelEnabled = value;
                 }
             }
@@ -258,20 +256,11 @@ namespace AttendanceSystem.ViewModels
         }
 
         /// <summary>
-        /// 登録処理 (F12) の実行可能判定
-        /// </summary>
-        private bool CanExecuteRegister(object? obj)
-        {
-            // コードと名称が入力されていることが条件
-            return !string.IsNullOrWhiteSpace(CodeText) && !string.IsNullOrWhiteSpace(NameText);
-        }
-
-        /// <summary>
         /// 登録処理 (F12) の本体。テキストが「閉じる」の場合は画面を閉じます。
         /// </summary>
         private void ExecuteRegister(object? obj)
         {
-            if (RegisterButtonText == "閉じる")
+            if (RegisterButtonText == MessageConfig.BtnClose)
             {
                 // 画面を閉じる
                 RequestClose?.Invoke();
@@ -280,17 +269,17 @@ namespace AttendanceSystem.ViewModels
 
             if (!int.TryParse(CodeText, out int code))
             {
-                MessageBox.Show("コードを正しく入力してください。", "警告", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(MessageConfig.WarnInvalidCode, MessageConfig.TitleWarning, MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
             if (string.IsNullOrWhiteSpace(NameText))
             {
-                MessageBox.Show("名称を入力してください。", "警告", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(MessageConfig.WarnNameRequired, MessageConfig.TitleWarning, MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
-            var result = MessageBox.Show("登録します。よろしいですか？", "確認", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            var result = MessageBox.Show(MessageConfig.ConfirmSave, MessageConfig.TitleConfirm, MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (result == MessageBoxResult.Yes)
             {
                 try
@@ -303,14 +292,14 @@ namespace AttendanceSystem.ViewModels
                     };
 
                     _db.SaveDayKind(dayKind);
-                    MessageBox.Show("登録しました。", "情報", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show(MessageConfig.InfoSuccessSave, MessageConfig.TitleInfo, MessageBoxButton.OK, MessageBoxImage.Information);
                     
                     ResetForm();
                     LoadData();
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"登録処理に失敗しました:\n{ex.Message}", "エラー", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(string.Format(MessageConfig.ErrorSaveFailed, ex.Message), MessageConfig.TitleError, MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
@@ -333,24 +322,24 @@ namespace AttendanceSystem.ViewModels
             // 他テーブル（単価・勤怠）で使用されているか確認
             if (_db.IsDayKindUsed(code))
             {
-                MessageBox.Show("この日種類は他のデータで使用されているため、削除できません。", "削除不可", MessageBoxButton.OK, MessageBoxImage.Stop);
+                MessageBox.Show(MessageConfig.WarnUsedInOtherTable, MessageConfig.TitleDeleteStop, MessageBoxButton.OK, MessageBoxImage.Stop);
                 return;
             }
 
-            var result = MessageBox.Show("削除します。よろしいですか？", "確認", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            var result = MessageBox.Show(string.Format(MessageConfig.ConfirmDelete, "日種類"), MessageConfig.TitleConfirm, MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (result == MessageBoxResult.Yes)
             {
                 try
                 {
                     _db.DeleteDayKind(code);
-                    MessageBox.Show("削除しました。", "情報", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show(MessageConfig.InfoSuccessDelete, MessageConfig.TitleInfo, MessageBoxButton.OK, MessageBoxImage.Information);
                     
                     ResetForm();
                     LoadData();
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"削除処理に失敗しました:\n{ex.Message}", "エラー", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(string.Format(MessageConfig.ErrorDeleteFailed, ex.Message), MessageConfig.TitleError, MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }

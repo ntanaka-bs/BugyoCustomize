@@ -7,7 +7,8 @@
         mc:Ignorable="d"
         Title="単価登録" Height="580" Width="820" 
         WindowStartupLocation="CenterScreen"
-        FontFamily="MS UI Gothic" FontSize="12">
+        FontFamily="MS UI Gothic" FontSize="12"
+        Closing="Window_Closing">
     
     <Window.DataContext>
         <viewmodels:UnitPriceViewModel />
@@ -19,59 +20,7 @@
     </Window.Background>
 
     <Window.Resources>
-        <!-- Code Input Style, yellow text on blue bg when focused -->
-        <Style x:Key="CodeInputStyle" TargetType="TextBox">
-            <Setter Property="BorderThickness" Value="0,0,1,0" />
-            <Setter Property="BorderBrush" Value="#A0A0A0" />
-            <Setter Property="VerticalContentAlignment" Value="Center" />
-            <Setter Property="HorizontalContentAlignment" Value="Center" />
-            <Style.Triggers>
-                <Trigger Property="IsFocused" Value="True">
-                    <Setter Property="Background" Value="Blue" />
-                    <Setter Property="Foreground" Value="Yellow" />
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-
-        <!-- Function Key Button Style with classic gradient -->
-        <Style x:Key="FButtonStyle" TargetType="Button">
-            <Setter Property="Margin" Value="2,0"/>
-            <Setter Property="Background">
-                <Setter.Value>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                        <GradientStop Color="#FFFFFF" Offset="0.0"/>
-                        <GradientStop Color="#E6E6E6" Offset="0.4"/>
-                        <GradientStop Color="#CCCCCC" Offset="0.5"/>
-                        <GradientStop Color="#B3B3B3" Offset="1.0"/>
-                    </LinearGradientBrush>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" BorderBrush="#909090" BorderThickness="1" CornerRadius="2">
-                            <Grid>
-                                <TextBlock Text="{TemplateBinding Tag}" Foreground="#404040" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="4,2,0,0" FontSize="11"/>
-                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,4"/>
-                            </Grid>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-            <Style.Triggers>
-                <Trigger Property="IsEnabled" Value="False">
-                    <Setter Property="Foreground" Value="#909090"/>
-                    <Setter Property="Background">
-                        <Setter.Value>
-                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                                <GradientStop Color="#F0F0F0" Offset="0.0"/>
-                                <GradientStop Color="#E0E0E0" Offset="1.0"/>
-                            </LinearGradientBrush>
-                        </Setter.Value>
-                    </Setter>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
+        <!-- ローカルリソースの一部は共通スタイル(App.xaml)に移動したため削除 -->
         
         <!-- Customize DataGrid cell padding and stretching to allow separator lines within cell -->
         <Style TargetType="DataGridCell">
@@ -87,6 +36,7 @@
             </Setter>
         </Style>
     </Window.Resources>
+
 
     <Grid Margin="5">
         <Grid.RowDefinitions>
@@ -113,8 +63,8 @@
                             <ColumnDefinition Width="25"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Border Background="#808080" BorderThickness="0,0,1,0" BorderBrush="#A0A0A0">
-                            <TextBlock Text="職種" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0"/>
+                        <Border Style="{StaticResource HeaderBorderStyle}" BorderThickness="0,0,1,0">
+                            <TextBlock Text="職種" Style="{StaticResource HeaderTextBlockStyle}" Margin="5,0"/>
                         </Border>
                         <TextBox Grid.Column="1" Text="{Binding JobCode, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource CodeInputStyle}" MaxLength="2"/>
                         <TextBlock Grid.Column="2" Text="{Binding JobName}" VerticalAlignment="Center" Margin="5,0"/>
@@ -129,8 +79,8 @@
                             <ColumnDefinition Width="25"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Border Background="#808080" BorderThickness="0,0,1,0" BorderBrush="#A0A0A0">
-                            <TextBlock Text="日種類" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0"/>
+                        <Border Style="{StaticResource HeaderBorderStyle}" BorderThickness="0,0,1,0">
+                            <TextBlock Text="日種類" Style="{StaticResource HeaderTextBlockStyle}" Margin="5,0"/>
                         </Border>
                         <TextBox Grid.Column="1" Text="{Binding DayKindCode, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource CodeInputStyle}" MaxLength="2"/>
                         <TextBlock Grid.Column="2" Text="{Binding DayKindName}" VerticalAlignment="Center" Margin="5,0"/>
@@ -145,13 +95,14 @@
                             <ColumnDefinition Width="25"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Border Background="#808080" BorderThickness="0,0,1,0" BorderBrush="#A0A0A0">
-                            <TextBlock Text="時間帯" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0"/>
+                        <Border Style="{StaticResource HeaderBorderStyle}" BorderThickness="0,0,1,0">
+                            <TextBlock Text="時間帯" Style="{StaticResource HeaderTextBlockStyle}" Margin="5,0"/>
                         </Border>
                         <TextBox Grid.Column="1" Text="{Binding TimeZoneCode, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource CodeInputStyle}" MaxLength="2"/>
                         <TextBlock Grid.Column="2" Text="{Binding TimeZoneName}" VerticalAlignment="Center" Margin="5,0"/>
                     </Grid>
                 </Border>
+
             </StackPanel>
 
             <Button Grid.Column="2" Content="検索(S)" Width="90" Height="22" VerticalAlignment="Bottom"
@@ -272,19 +223,20 @@
 
         <!-- Footer Function Keys -->
         <UniformGrid Grid.Row="3" Rows="1" Columns="12" Margin="10,0,10,10" Height="45">
-            <Button Style="{StaticResource FButtonStyle}" Tag="F1" IsEnabled="False"/>
-            <Button Style="{StaticResource FButtonStyle}" Tag="F2" IsEnabled="False"/>
-            <Button Style="{StaticResource FButtonStyle}" Tag="F3" IsEnabled="False"/>
-            <Button Style="{StaticResource FButtonStyle}" Tag="F4" IsEnabled="False"/>
-            <Button Style="{StaticResource FButtonStyle}" Tag="F5" IsEnabled="False"/>
-            <Button Style="{StaticResource FButtonStyle}" Tag="F6" IsEnabled="False"/>
-            <Button Style="{StaticResource FButtonStyle}" Tag="F7" Content="{Binding F7Text}" Command="{Binding DeleteRowCommand}"/>
-            <Button Style="{StaticResource FButtonStyle}" Tag="F8" IsEnabled="False"/>
-            <Button Style="{StaticResource FButtonStyle}" Tag="F9" IsEnabled="False"/>
-            <Button Style="{StaticResource FButtonStyle}" Tag="F10" Content="{Binding F10Text}" Command="{Binding CancelCommand}"/>
-            <Button Style="{StaticResource FButtonStyle}" Tag="F11" IsEnabled="False"/>
-            <Button Style="{StaticResource FButtonStyle}" Tag="F12" Content="{Binding F12Text}" Command="{Binding F12Command}"/>
+            <Button Style="{StaticResource FuncButtonStyle}" Tag="F1" IsEnabled="False"/>
+            <Button Style="{StaticResource FuncButtonStyle}" Tag="F2" IsEnabled="False"/>
+            <Button Style="{StaticResource FuncButtonStyle}" Tag="F3" IsEnabled="False"/>
+            <Button Style="{StaticResource FuncButtonStyle}" Tag="F4" IsEnabled="False"/>
+            <Button Style="{StaticResource FuncButtonStyle}" Tag="F5" IsEnabled="False"/>
+            <Button Style="{StaticResource FuncButtonStyle}" Tag="F6" IsEnabled="False"/>
+            <Button Style="{StaticResource FuncButtonStyle}" Tag="F7" Content="{Binding F7Text}" Command="{Binding DeleteRowCommand}"/>
+            <Button Style="{StaticResource FuncButtonStyle}" Tag="F8" IsEnabled="False"/>
+            <Button Style="{StaticResource FuncButtonStyle}" Tag="F9" IsEnabled="False"/>
+            <Button Style="{StaticResource FuncButtonStyle}" Tag="F10" Content="{Binding F10Text}" Command="{Binding CancelCommand}"/>
+            <Button Style="{StaticResource FuncButtonStyle}" Tag="F11" IsEnabled="False"/>
+            <Button Style="{StaticResource FuncButtonStyle}" Tag="F12" Content="{Binding F12Text}" Command="{Binding F12Command}"/>
         </UniformGrid>
+
 
     </Grid>
 </Window>

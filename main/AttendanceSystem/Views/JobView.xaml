@@ -9,7 +9,8 @@
         Title="職種登録" Height="550" Width="800"
         WindowStartupLocation="CenterScreen"
         Background="#F0F0F0"
-        ResizeMode="NoResize">
+        ResizeMode="NoResize"
+        Closing="Window_Closing">
 
     <Window.DataContext>
         <vm:JobViewModel />
@@ -23,41 +24,9 @@
 
     <!-- リソース定義：画面全体で使用するスタイルなど -->
     <Window.Resources>
-        <!-- ブール値を活性状態に変換するためのコンバーターは不要（IsEnabledに直接バインド可能） -->
-        
-        <!-- 入力フィールドのヘッダー（青背景）に使用するスタイル -->
-        <Style x:Key="HeaderBorder" TargetType="Border">
-            <Setter Property="Background" Value="#808080" />
-            <Setter Property="BorderBrush" Value="#A0A0A0" />
-            <Setter Property="BorderThickness" Value="1" />
-            <Setter Property="Padding" Value="5,2" />
-        </Style>
-        <!-- ヘッダー内のテキスト用スタイル -->
-        <Style x:Key="HeaderText" TargetType="TextBlock">
-            <Setter Property="Foreground" Value="White" />
-            <Setter Property="VerticalAlignment" Value="Center" />
-            <Setter Property="FontSize" Value="13" />
-        </Style>
-        <!-- 入力用テキストボックスのスタイル：フォーカス時に背景を黄色にする -->
-        <Style x:Key="InputTextBox" TargetType="TextBox">
-            <Setter Property="FontSize" Value="13" />
-            <Setter Property="Padding" Value="2" />
-            <Setter Property="BorderThickness" Value="1" />
-            <Setter Property="BorderBrush" Value="#A0A0A0" />
-            <Setter Property="VerticalContentAlignment" Value="Center" />
-            <Style.Triggers>
-                <Trigger Property="IsFocused" Value="True">
-                    <Setter Property="Background" Value="Yellow" />
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-        <!-- 下部ファンクションボタン用のスタイル -->
-        <Style x:Key="FuncButton" TargetType="Button">
-            <Setter Property="Margin" Value="2" />
-            <Setter Property="FontSize" Value="12" />
-            <Setter Property="FontWeight" Value="SemiBold" />
-        </Style>
+        <!-- ローカルリソースは共通スタイル(App.xaml)に移動したため削除 -->
     </Window.Resources>
+
 
     <Grid Margin="10">
         <Grid.RowDefinitions>
@@ -80,25 +49,26 @@
             </Grid.RowDefinitions>
 
             <!-- 各入力項目の見出し -->
-            <Border Grid.Row="0" Grid.Column="0" Style="{StaticResource HeaderBorder}">
-                <TextBlock Text="コード" Style="{StaticResource HeaderText}" />
+            <Border Grid.Row="0" Grid.Column="0" Style="{StaticResource HeaderBorderStyle}">
+                <TextBlock Text="コード" Style="{StaticResource HeaderTextBlockStyle}" />
             </Border>
-            <Border Grid.Row="0" Grid.Column="1" Style="{StaticResource HeaderBorder}" Margin="-1,0,0,0">
-                <TextBlock Text="名称" Style="{StaticResource HeaderText}" />
+            <Border Grid.Row="0" Grid.Column="1" Style="{StaticResource HeaderBorderStyle}" Margin="-1,0,0,0">
+                <TextBlock Text="名称" Style="{StaticResource HeaderTextBlockStyle}" />
             </Border>
-            <Border Grid.Row="0" Grid.Column="2" Style="{StaticResource HeaderBorder}" Margin="-1,0,0,0">
-                <TextBlock Text="略称" Style="{StaticResource HeaderText}" />
+            <Border Grid.Row="0" Grid.Column="2" Style="{StaticResource HeaderBorderStyle}" Margin="-1,0,0,0">
+                <TextBlock Text="略称" Style="{StaticResource HeaderTextBlockStyle}" />
             </Border>
 
             <!-- 各入力項目のテキストボックス -->
             <TextBox Grid.Row="1" Grid.Column="0" Text="{Binding InputCode, UpdateSourceTrigger=PropertyChanged}" 
-                      IsEnabled="{Binding IsCodeEnabled}" Style="{StaticResource InputTextBox}" Margin="0,-1,0,0" Foreground="Blue"/>
+                      IsEnabled="{Binding IsCodeEnabled}" Style="{StaticResource InputTextBoxStyle}" Margin="0,-1,0,0" Foreground="Blue"/>
             
             <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding InputName, UpdateSourceTrigger=PropertyChanged}" 
-                      MaxLength="20" Style="{StaticResource InputTextBox}" Margin="-1,-1,0,0"/>
+                      MaxLength="20" Style="{StaticResource InputTextBoxStyle}" Margin="-1,-1,0,0"/>
 
             <TextBox Grid.Row="1" Grid.Column="2" Text="{Binding InputAbbreviation, UpdateSourceTrigger=PropertyChanged}" 
-                      MaxLength="6" Style="{StaticResource InputTextBox}" Margin="-1,-1,0,0"/>
+                      MaxLength="6" Style="{StaticResource InputTextBoxStyle}" Margin="-1,-1,0,0"/>
+
         </Grid>
 
         <!-- 一覧表示エリア -->
@@ -130,62 +100,20 @@
         </DataGrid>
 
         <!-- フッターエリア：ボタンスタイルと表示制御の更新 -->
-        <Grid Grid.Row="3" Margin="0,5,0,0">
-            <UniformGrid Rows="1" Columns="12" Height="45">
-                <Button Style="{StaticResource FuncButton}" IsEnabled="False">
-                    <TextBlock Text="[F1]" Foreground="Gray" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="2,2,0,0" FontSize="10"/>
-                </Button>
-                <Button Style="{StaticResource FuncButton}" IsEnabled="False">
-                    <TextBlock Text="[F2]" Foreground="Gray" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="2,2,0,0" FontSize="10"/>
-                </Button>
-                <Button Style="{StaticResource FuncButton}" IsEnabled="False">
-                    <TextBlock Text="[F3]" Foreground="Gray" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="2,2,0,0" FontSize="10"/>
-                </Button>
-                <Button Style="{StaticResource FuncButton}" IsEnabled="False">
-                    <TextBlock Text="[F4]" Foreground="Gray" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="2,2,0,0" FontSize="10"/>
-                </Button>
-                <Button Style="{StaticResource FuncButton}" IsEnabled="False">
-                    <TextBlock Text="[F5]" Foreground="Gray" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="2,2,0,0" FontSize="10"/>
-                </Button>
-                <Button Style="{StaticResource FuncButton}" IsEnabled="False">
-                    <TextBlock Text="[F6]" Foreground="Gray" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="2,2,0,0" FontSize="10"/>
-                </Button>
-                
-                <!-- F7：削除（入力・選択中のみ活性） -->
-                <Button Style="{StaticResource FuncButton}" Command="{Binding DeleteCommand}"
-                        IsEnabled="{Binding IsActionButtonsEnabled}">
-                    <Grid>
-                        <TextBlock Text="[F7]" Foreground="Black" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="10" Margin="-5,-5,0,0"/>
-                        <TextBlock Text="削除" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,10,0,0"/>
-                    </Grid>
-                </Button>
-                <Button Style="{StaticResource FuncButton}" IsEnabled="False">
-                    <TextBlock Text="[F8]" Foreground="Gray" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="2,2,0,0" FontSize="10"/>
-                </Button>
-                <Button Style="{StaticResource FuncButton}" IsEnabled="False">
-                    <TextBlock Text="[F9]" Foreground="Gray" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="2,2,0,0" FontSize="10"/>
-                </Button>
-                
-                <!-- F10：中止（入力・選択中のみ活性） -->
-                <Button Style="{StaticResource FuncButton}" Command="{Binding CancelCommand}"
-                        IsEnabled="{Binding IsActionButtonsEnabled}">
-                    <Grid>
-                        <TextBlock Text="[F10]" Foreground="Black" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="10" Margin="-5,-5,0,0"/>
-                        <TextBlock Text="中止" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,10,0,0"/>
-                    </Grid>
-                </Button>
-                <Button Style="{StaticResource FuncButton}" IsEnabled="False">
-                    <TextBlock Text="[F11]" Foreground="Gray" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="2,2,0,0" FontSize="10"/>
-                </Button>
-                
-                <!-- F12：登録 または 閉じる（テキストを動的に切り替え） -->
-                <Button Style="{StaticResource FuncButton}" Command="{Binding SaveCommand}">
-                    <Grid>
-                        <TextBlock Text="[F12]" Foreground="Black" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="10" Margin="-5,-5,0,0"/>
-                        <TextBlock Text="{Binding SaveOrCloseButtonText}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,10,0,0"/>
-                    </Grid>
-                </Button>
-            </UniformGrid>
-        </Grid>
+        <UniformGrid Grid.Row="3" Rows="1" Columns="12" Height="45" Margin="0,5,0,0">
+            <Button Style="{StaticResource FuncButtonStyle}" Tag="F1" IsEnabled="False" />
+            <Button Style="{StaticResource FuncButtonStyle}" Tag="F2" IsEnabled="False" />
+            <Button Style="{StaticResource FuncButtonStyle}" Tag="F3" IsEnabled="False" />
+            <Button Style="{StaticResource FuncButtonStyle}" Tag="F4" IsEnabled="False" />
+            <Button Style="{StaticResource FuncButtonStyle}" Tag="F5" IsEnabled="False" />
+            <Button Style="{StaticResource FuncButtonStyle}" Tag="F6" IsEnabled="False" />
+            <Button Style="{StaticResource FuncButtonStyle}" Tag="F7" Content="削除" Command="{Binding DeleteCommand}" IsEnabled="{Binding IsActionButtonsEnabled}" />
+            <Button Style="{StaticResource FuncButtonStyle}" Tag="F8" IsEnabled="False" />
+            <Button Style="{StaticResource FuncButtonStyle}" Tag="F9" IsEnabled="False" />
+            <Button Style="{StaticResource FuncButtonStyle}" Tag="F10" Content="中止" Command="{Binding CancelCommand}" IsEnabled="{Binding IsActionButtonsEnabled}" />
+            <Button Style="{StaticResource FuncButtonStyle}" Tag="F11" IsEnabled="False" />
+            <Button Style="{StaticResource FuncButtonStyle}" Tag="F12" Content="{Binding SaveOrCloseButtonText}" Command="{Binding SaveCommand}" />
+        </UniformGrid>
+
     </Grid>
 </Window>

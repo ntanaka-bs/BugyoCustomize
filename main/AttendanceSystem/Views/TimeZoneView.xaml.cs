@@ -1,5 +1,6 @@
-﻿using System.Windows;
+using System.Windows;
 using AttendanceSystem.ViewModels;
+using AttendanceSystem.Common;
 
 namespace AttendanceSystem.Views
 {
@@ -19,6 +20,14 @@ namespace AttendanceSystem.Views
             
             // ViewModelからの画面終了要求を購読
             vm.RequestClose += () => this.Close();
+        }
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            var result = MessageBox.Show(MessageConfig.ConfirmClose, MessageConfig.TitleConfirm, MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.No)
+            {
+                e.Cancel = true;
+            }
         }
     }
 }
