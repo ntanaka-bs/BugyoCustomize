@@ -1,13 +1,19 @@
 <Window x:Class="AttendanceSystem.Views.MainMenuView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="勤怠管理システム - メインメニュー" Height="350" Width="300"
+        Title="勤怠管理システム - メインメニュー" Height="550" Width="300"
         WindowStartupLocation="CenterScreen" Background="#F0F0F0"
         Closing="Window_Closing">
     <Grid>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock Text="機能選択" FontSize="20" FontWeight="Bold" Margin="0,0,0,20" HorizontalAlignment="Center"/>
+            <Button Content="勤務表プロ勤怠データ取込" Width="200" Height="40" Margin="0,0,0,10" />
+            <Button Content="出務者明細書" Width="200" Height="40" Margin="0,0,0,10" />
             <Button Content="日毎勤怠チェックリスト" Width="200" Height="40" Margin="0,0,0,10" Click="OpenDailyCheckList_Click"/>
+            <Button Content="勤怠データ入力" Width="200" Height="40" Margin="0,0,0,10" />
+            <Button Content="給与データ連携" Width="200" Height="40" Margin="0,0,0,10" />
+            <Button Content="日割計算データ出力" Width="200" Height="40" Margin="0,0,0,10" />
+            <Button Content="給与・賞与明細書" Width="200" Height="40" Margin="0,0,0,10" />
             <Button Content="マスタ管理" Width="200" Height="40" Margin="0,0,0,10" Click="OpenMasterMenu_Click"/>
         </StackPanel>
     </Grid>
