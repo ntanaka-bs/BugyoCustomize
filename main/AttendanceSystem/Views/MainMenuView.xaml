@@ -10,9 +10,10 @@
             <Button Content="勤務表プロ勤怠データ取込" Width="200" Height="40" Margin="0,0,0,10" />
             <Button Content="出務者明細書" Width="200" Height="40" Margin="0,0,0,10" />
             <Button Content="日毎勤怠チェックリスト" Width="200" Height="40" Margin="0,0,0,10" Click="OpenDailyCheckList_Click"/>
-            <Button Content="勤怠データ入力" Width="200" Height="40" Margin="0,0,0,10" />
+            <Button Content="勤怠データ入力" Width="200" Height="40" Margin="0,0,0,10" Click="OpenAttendanceRegistration_Click"/>
             <Button Content="給与データ連携" Width="200" Height="40" Margin="0,0,0,10" />
-            <Button Content="日割計算データ出力" Width="200" Height="40" Margin="0,0,0,10" />
+            <Button Content="有給一覧表" Width="200" Height="40" Margin="0,0,0,10" Click="OpenPaidHolidayList_Click"/>
+            <Button Content="日割計算データ出力" Width="200" Height="40" Margin="0,0,0,10" Click="OpenDailyRatOutput_Click"/>
             <Button Content="給与・賞与明細書" Width="200" Height="40" Margin="0,0,0,10" />
             <Button Content="マスタ管理" Width="200" Height="40" Margin="0,0,0,10" Click="OpenMasterMenu_Click"/>
         </StackPanel>
