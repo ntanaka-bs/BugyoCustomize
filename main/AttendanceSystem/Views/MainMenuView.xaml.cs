@@ -10,27 +10,15 @@ namespace AttendanceSystem.Views
             InitializeComponent();
         }
 
-        private void OpenDayKindView_Click(object sender, RoutedEventArgs e)
+        private void OpenDailyCheckList_Click(object sender, RoutedEventArgs e)
         {
-            var view = new DayKindView();
+            var view = new DailyAttendanceCheckListView();
             view.ShowDialog();
         }
 
-        private void OpenJobView_Click(object sender, RoutedEventArgs e)
+        private void OpenMasterMenu_Click(object sender, RoutedEventArgs e)
         {
-            var view = new JobView();
-            view.ShowDialog();
-        }
-
-        private void OpenTimeZoneView_Click(object sender, RoutedEventArgs e)
-        {
-            var view = new TimeZoneView();
-            view.ShowDialog();
-        }
-
-        private void OpenUnitPriceView_Click(object sender, RoutedEventArgs e)
-        {
-            var view = new UnitPriceView();
+            var view = new MasterMenuView();
             view.ShowDialog();
         }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

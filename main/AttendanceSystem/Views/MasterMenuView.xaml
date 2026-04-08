@@ -1,0 +1,15 @@
+<Window x:Class="AttendanceSystem.Views.MasterMenuView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="マスタ管理メニュー" Height="350" Width="300"
+        WindowStartupLocation="CenterScreen" Background="#F0F0F0">
+    <Grid>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Text="マスタ管理" FontSize="20" FontWeight="Bold" Margin="0,0,0,20" HorizontalAlignment="Center"/>
+            <Button Content="職種登録" Width="200" Height="40" Margin="0,0,0,10" Click="OpenJobView_Click"/>
+            <Button Content="日種類登録" Width="200" Height="40" Margin="0,0,0,10" Click="OpenDayKindView_Click"/>
+            <Button Content="時間帯区分登録" Width="200" Height="40" Margin="0,0,0,10" Click="OpenTimeZoneView_Click"/>
+            <Button Content="単価登録" Width="200" Height="40" Margin="0,0,0,10" Click="OpenUnitPriceView_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
