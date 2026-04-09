@@ -14,11 +14,38 @@ namespace AttendanceSystem.Views
         }
 
         /// <summary>
+        /// 勤務表プロ勤怠データ取込画面を開きます。
+        /// </summary>
+        private void OpenAttendanceImport_Click(object sender, RoutedEventArgs e)
+        {
+            var view = new AttendanceImportView();
+            view.ShowDialog();
+        }
+
+        /// <summary>
+        /// 出務者明細書画面を開きます。
+        /// </summary>
+        private void OpenWorkingDetailList_Click(object sender, RoutedEventArgs e)
+        {
+            var view = new WorkingDetailListView();
+            view.ShowDialog();
+        }
+
+        /// <summary>
         /// 日毎勤怠チェックリスト画面を開きます。
         /// </summary>
         private void OpenDailyCheckList_Click(object sender, RoutedEventArgs e)
         {
             var view = new DailyAttendanceCheckListView();
+            view.ShowDialog();
+        }
+
+        /// <summary>
+        /// 給与・賞与明細書画面を開きます。
+        /// </summary>
+        private void OpenSalaryReport_Click(object sender, RoutedEventArgs e)
+        {
+            var view = new SalaryReportView();
             view.ShowDialog();
         }
 
@@ -55,6 +82,15 @@ namespace AttendanceSystem.Views
         private void OpenPaidHolidayList_Click(object sender, RoutedEventArgs e)
         {
             var view = new PaidHolidayListView();
+            view.ShowDialog();
+        }
+
+        /// <summary>
+        /// 給与データ連携画面を開きます。
+        /// </summary>
+        private void OpenSalaryOutput_Click(object sender, RoutedEventArgs e)
+        {
+            var view = new SalaryOutputView();
             view.ShowDialog();
         }
 
