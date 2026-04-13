@@ -1,6 +1,6 @@
 using System;
 using System.IO;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using System.Windows;
 
 namespace AttendanceSystem.Models
