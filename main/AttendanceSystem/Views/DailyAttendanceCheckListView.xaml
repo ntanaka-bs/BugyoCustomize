@@ -31,9 +31,31 @@
                     <!-- 日付 -->
                     <GroupBox Header="日付" Margin="0,0,0,10" BorderBrush="#C0C0C0">
                         <StackPanel Orientation="Horizontal" Margin="20,10">
-                            <DatePicker SelectedDate="{Binding StartDate}" Width="140" VerticalContentAlignment="Center" Padding="3"/>
+                            <DatePicker SelectedDate="{Binding StartDate}" Width="140" VerticalContentAlignment="Center" Padding="3">
+                                <DatePicker.Style>
+                                    <Style TargetType="DatePicker">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding IsDateRangeError}" Value="True">
+                                                <Setter Property="BorderBrush" Value="Red"/>
+                                                <Setter Property="BorderThickness" Value="2"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </DatePicker.Style>
+                            </DatePicker>
                             <TextBlock Text="～" VerticalAlignment="Center" Margin="20,0"/>
-                            <DatePicker SelectedDate="{Binding EndDate}" Width="140" VerticalContentAlignment="Center" Padding="3"/>
+                            <DatePicker SelectedDate="{Binding EndDate}" Width="140" VerticalContentAlignment="Center" Padding="3">
+                                <DatePicker.Style>
+                                    <Style TargetType="DatePicker">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding IsDateRangeError}" Value="True">
+                                                <Setter Property="BorderBrush" Value="Red"/>
+                                                <Setter Property="BorderThickness" Value="2"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </DatePicker.Style>
+                            </DatePicker>
                         </StackPanel>
                     </GroupBox>
 
