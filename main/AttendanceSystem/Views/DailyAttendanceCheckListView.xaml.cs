@@ -1,5 +1,5 @@
-using System;
 using System.Windows;
+using AttendanceSystem.ViewModels;
 
 namespace AttendanceSystem.Views
 {
@@ -8,11 +8,7 @@ namespace AttendanceSystem.Views
         public DailyAttendanceCheckListView()
         {
             InitializeComponent();
-        }
-
-        private void Cancel_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
+            this.DataContext = new DailyAttendanceCheckListViewModel();
         }
     }
 }

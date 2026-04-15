@@ -1,9 +1,15 @@
 <Window x:Class="AttendanceSystem.Views.DailyAttendanceCheckListView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:AttendanceSystem.ViewModels"
+        xmlns:conv="clr-namespace:AttendanceSystem.Converters"
         Title="日毎勤怠チェックリスト" SizeToContent="WidthAndHeight" MinWidth="750" MinHeight="650"
         WindowStartupLocation="CenterScreen" Background="#F0F0F0"
         FontFamily="MS UI Gothic" FontSize="12">
+    <Window.Resources>
+        <conv:RadioButtonToIntConverter x:Key="RadioConverter" />
+        <conv:InverseBooleanConverter x:Key="InverseBooleanConverter" />
+    </Window.Resources>
     <Grid Margin="10">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -16,78 +22,107 @@
                     <!-- リスト -->
                     <GroupBox Header="リスト" Margin="0,0,0,10" BorderBrush="#C0C0C0">
                         <StackPanel Orientation="Horizontal" Margin="20,10">
-                            <RadioButton Content="チェックリスト" IsChecked="True" Margin="0,0,60,0" VerticalAlignment="Center"/>
-                            <RadioButton Content="注意リスト" Margin="0,0,60,0" VerticalAlignment="Center"/>
-                            <RadioButton Content="計算前リスト" VerticalAlignment="Center"/>
+                            <RadioButton Content="チェックリスト" IsChecked="{Binding ListType, Converter={StaticResource RadioConverter}, ConverterParameter=0}" Margin="0,0,60,0" VerticalAlignment="Center"/>
+                            <RadioButton Content="注意リスト" IsChecked="{Binding ListType, Converter={StaticResource RadioConverter}, ConverterParameter=1}" Margin="0,0,60,0" VerticalAlignment="Center"/>
+                            <RadioButton Content="計算前リスト" IsChecked="{Binding ListType, Converter={StaticResource RadioConverter}, ConverterParameter=2}" VerticalAlignment="Center"/>
                         </StackPanel>
                     </GroupBox>
                     
                     <!-- 日付 -->
                     <GroupBox Header="日付" Margin="0,0,0,10" BorderBrush="#C0C0C0">
                         <StackPanel Orientation="Horizontal" Margin="20,10">
-                            <TextBox Text="2013 年 12 月  1 日" Width="140" VerticalContentAlignment="Center" Padding="3"/>
+                            <DatePicker SelectedDate="{Binding StartDate}" Width="140" VerticalContentAlignment="Center" Padding="3"/>
                             <TextBlock Text="～" VerticalAlignment="Center" Margin="20,0"/>
-                            <TextBox Text="2013 年 12 月 31 日" Width="140" VerticalContentAlignment="Center" Padding="3"/>
+                            <DatePicker SelectedDate="{Binding EndDate}" Width="140" VerticalContentAlignment="Center" Padding="3"/>
                         </StackPanel>
                     </GroupBox>
 
                     <!-- センター区分 -->
                     <GroupBox Header="センター区分" Margin="0,0,0,10" BorderBrush="#C0C0C0">
                         <StackPanel Orientation="Horizontal" Margin="20,10">
-                            <TextBox Text="最初" Width="45" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="3"/>
+                            <TextBox Text="{Binding CenterCodeStart}" Width="45" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="3"/>
                             <TextBlock Text="～" VerticalAlignment="Center" Margin="115,0"/>
-                            <TextBox Text="最後" Width="45" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="3"/>
+                            <TextBox Text="{Binding CenterCodeEnd}" Width="45" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="3"/>
                         </StackPanel>
                     </GroupBox>
 
                     <!-- 職種 -->
                     <GroupBox Header="職種" Margin="0,0,0,10" BorderBrush="#C0C0C0">
                         <StackPanel Orientation="Horizontal" Margin="20,10">
-                            <TextBox Text="最初" Width="45" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="3"/>
+                            <TextBox Text="{Binding JobCodeStart}" Width="45" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="3"/>
                             <TextBlock Text="～" VerticalAlignment="Center" Margin="115,0"/>
-                            <TextBox Text="最後" Width="45" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="3"/>
+                            <TextBox Text="{Binding JobCodeEnd}" Width="45" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="3"/>
                         </StackPanel>
                     </GroupBox>
 
                     <!-- 日種類 -->
                     <GroupBox Header="日種類" Margin="0,0,0,10" BorderBrush="#C0C0C0">
                         <StackPanel Orientation="Horizontal" Margin="20,10">
-                            <TextBox Text="最初" Width="45" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="3"/>
+                            <TextBox Text="{Binding DayKindCodeStart}" Width="45" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="3"/>
                             <TextBlock Text="～" VerticalAlignment="Center" Margin="115,0"/>
-                            <TextBox Text="最後" Width="45" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="3"/>
+                            <TextBox Text="{Binding DayKindCodeEnd}" Width="45" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="3"/>
                         </StackPanel>
                     </GroupBox>
 
                     <!-- 時間帯 -->
                     <GroupBox Header="時間帯" Margin="0,0,0,10" BorderBrush="#C0C0C0">
                         <StackPanel Orientation="Horizontal" Margin="20,10">
-                            <TextBox Text="最初" Width="45" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="3"/>
+                            <TextBox Text="{Binding TimeZoneCodeStart}" Width="45" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="3"/>
                             <TextBlock Text="～" VerticalAlignment="Center" Margin="115,0"/>
-                            <TextBox Text="最後" Width="45" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="3"/>
+                            <TextBox Text="{Binding TimeZoneCodeEnd}" Width="45" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="3"/>
                         </StackPanel>
                     </GroupBox>
 
                     <!-- 出務 -->
                     <GroupBox Header="出務" Margin="0,0,0,0" BorderBrush="#C0C0C0">
                         <StackPanel Orientation="Horizontal" Margin="20,10">
-                            <RadioButton Content="全て" IsChecked="True" Margin="0,0,60,0" VerticalAlignment="Center"/>
-                            <RadioButton Content="有" Margin="0,0,60,0" VerticalAlignment="Center"/>
-                            <RadioButton Content="無" VerticalAlignment="Center"/>
+                            <RadioButton Content="全て" IsChecked="{Binding AttendanceStatus, Converter={StaticResource RadioConverter}, ConverterParameter=0}" Margin="0,0,60,0" VerticalAlignment="Center"/>
+                            <RadioButton Content="有" IsChecked="{Binding AttendanceStatus, Converter={StaticResource RadioConverter}, ConverterParameter=1}" Margin="0,0,60,0" VerticalAlignment="Center"/>
+                            <RadioButton Content="無" IsChecked="{Binding AttendanceStatus, Converter={StaticResource RadioConverter}, ConverterParameter=2}" VerticalAlignment="Center"/>
                         </StackPanel>
                     </GroupBox>
 
                 </StackPanel>
             </TabItem>
             <TabItem Header="プリンタ設定">
-                <Grid>
-                    <TextBlock Text="※プリンタ設定項目は未実装です。" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Gray"/>
-                </Grid>
+                <StackPanel Margin="15">
+                    <!-- 出力先プリンタ -->
+                    <GroupBox Header="出力先プリンタ" Margin="0,0,0,10" BorderBrush="#C0C0C0">
+                        <StackPanel Margin="20,10">
+                            <ComboBox SelectedValue="{Binding SelectedPrinter}" SelectedValuePath="Content" Width="250" HorizontalAlignment="Left">
+                                <ComboBoxItem Content="通常使うプリンター" />
+                                <ComboBoxItem Content="Microsoft Print to PDF" />
+                                <ComboBoxItem Content="Fax" />
+                            </ComboBox>
+                        </StackPanel>
+                    </GroupBox>
+                    
+                    <!-- 用紙サイズ -->
+                    <GroupBox Header="用紙サイズ" Margin="0,0,0,10" BorderBrush="#C0C0C0">
+                        <StackPanel Margin="20,10">
+                            <ComboBox SelectedValue="{Binding PaperSize}" SelectedValuePath="Content" Width="150" HorizontalAlignment="Left">
+                                <ComboBoxItem Content="A4" />
+                                <ComboBoxItem Content="A3" />
+                                <ComboBoxItem Content="B5" />
+                                <ComboBoxItem Content="B4" />
+                            </ComboBox>
+                        </StackPanel>
+                    </GroupBox>
+                    
+                    <!-- 印刷の向き -->
+                    <GroupBox Header="印刷方向" Margin="0,0,0,10" BorderBrush="#C0C0C0">
+                        <StackPanel Orientation="Horizontal" Margin="20,10">
+                            <RadioButton Content="縦(Portrait)" IsChecked="{Binding IsLandscape, Converter={StaticResource InverseBooleanConverter}}" Margin="0,0,40,0" VerticalAlignment="Center"/>
+                            <RadioButton Content="横(Landscape)" IsChecked="{Binding IsLandscape}" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </GroupBox>
+                </StackPanel>
             </TabItem>
         </TabControl>
 
         <Grid Grid.Column="1">
             <StackPanel VerticalAlignment="Top" Margin="0,20,0,0">
-                <Button Content="印刷(P)" Height="25" Margin="0,0,0,10">
+                <Button Content="印刷(P)" Command="{Binding PrintCommand}" Height="25" Margin="0,0,0,10">
                     <Button.Background>
                         <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
                             <GradientStop Color="#F0F0F0" Offset="0.0" />
@@ -95,7 +130,7 @@
                         </LinearGradientBrush>
                     </Button.Background>
                 </Button>
-                <Button Content="プレビュー(I)" Height="25" Margin="0,0,0,10">
+                <Button Content="プレビュー(I)" Command="{Binding PreviewCommand}" Height="25" Margin="0,0,0,10">
                      <Button.Background>
                         <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
                             <GradientStop Color="#F0F0F0" Offset="0.0" />
@@ -104,7 +139,7 @@
                     </Button.Background>
                 </Button>
             </StackPanel>
-            <Button Content="キャンセル" Height="25" VerticalAlignment="Bottom" Margin="0,0,0,10" Click="Cancel_Click">
+            <Button Content="キャンセル" Command="{Binding CancelCommand}" Height="25" VerticalAlignment="Bottom" Margin="0,0,0,10">
                  <Button.Background>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
                         <GradientStop Color="#F0F0F0" Offset="0.0" />
