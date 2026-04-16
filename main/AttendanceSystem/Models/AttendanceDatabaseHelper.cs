@@ -70,7 +70,14 @@ namespace AttendanceSystem.Models
                 { "C_LateEndTime", "bigint NOT NULL DEFAULT 0" },
                 { "C_LateTime", "smallint NOT NULL DEFAULT 0" },
                 { "C_LateMoney", "decimal(16,0) NOT NULL DEFAULT 0" },
-                { "C_PaymentMoney", "decimal(16,0) NOT NULL DEFAULT 0" }
+                { "C_PaymentMoney", "decimal(16,0) NOT NULL DEFAULT 0" },
+                { "C_UsualDutiesCode", "tinyint NOT NULL DEFAULT 0" },
+                { "C_UsualDutiesStartTime", "bigint NOT NULL DEFAULT 0" },
+                { "C_UsualDutiesEndTime", "bigint NOT NULL DEFAULT 0" },
+                { "C_UsualDutiesRestStartTime", "bigint NOT NULL DEFAULT 0" },
+                { "C_UsualDutiesRestEndTime", "bigint NOT NULL DEFAULT 0" },
+                { "C_UsualDutiesTime", "smallint NOT NULL DEFAULT 0" },
+                { "C_UsualDutiesMoney", "decimal(16,0) NOT NULL DEFAULT 0" }
             };
 
             using (var conn = new SqlConnection(_connectionString))

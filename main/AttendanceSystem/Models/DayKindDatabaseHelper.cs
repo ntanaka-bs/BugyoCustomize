@@ -213,7 +213,7 @@ namespace AttendanceSystem.Models
         /// </summary>
         /// <param name="code">取得対象の日種類コード</param>
         /// <returns>該当するデータがある場合は DayKind オブジェクト、ない場合は null</returns>
-        public DayKind GetDayKindByCode(int code)
+        public DayKind? GetDayKindByCode(int code)
         {
             using (var conn = GetConnection())
             {

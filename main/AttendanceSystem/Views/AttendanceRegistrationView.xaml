@@ -25,8 +25,8 @@
                     <Border Background="#808080" BorderBrush="#A0A0A0" BorderThickness="1" Width="90" Height="22">
                         <TextBlock Text="日付" Foreground="White" VerticalAlignment="Center" Margin="5,0"/>
                     </Border>
-                    <TextBox Text="2014 年 1 月 1 日" Width="150" VerticalContentAlignment="Center" Margin="5,0,10,0"/>
-                    <Button Content="リスト(L)" Width="90" Height="22">
+                    <DatePicker SelectedDate="{Binding AttendanceDate, UpdateSourceTrigger=PropertyChanged}" Width="150" Height="22" Margin="5,0,10,0" VerticalContentAlignment="Center"/>
+                    <Button Content="リスト(L)" Command="{Binding ListCommand}" Width="90" Height="22">
                         <Button.Background>
                             <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
                                 <GradientStop Color="#F0F0F0" Offset="0.0" />
@@ -43,8 +43,8 @@
                     </Border>
                     <Border BorderBrush="#A0A0A0" BorderThickness="1" Background="White" Margin="5,0,0,0" Height="22">
                         <StackPanel Orientation="Horizontal">
-                            <TextBox Text="999" Width="35" VerticalContentAlignment="Center" BorderThickness="0" Background="Transparent" Margin="2,0,0,0"/>
-                            <TextBlock Text="＠＠＠＊＠＠＠＠＊＠＠＠＊＠＠＠＊＠" VerticalAlignment="Center" Margin="5,0,5,0"/>
+                            <TextBox Text="{Binding CenterCode, UpdateSourceTrigger=PropertyChanged}" Width="50" VerticalContentAlignment="Center" BorderThickness="0" Background="Transparent" Margin="2,0,0,0"/>
+                            <TextBlock Text="{Binding CenterName}" VerticalAlignment="Center" Margin="5,0,5,0" Width="200" TextTrimming="CharacterEllipsis"/>
                         </StackPanel>
                     </Border>
                 </StackPanel>
@@ -56,8 +56,8 @@
                     </Border>
                     <Border BorderBrush="#A0A0A0" BorderThickness="1" Background="White" Margin="5,0,0,0" Height="22">
                         <StackPanel Orientation="Horizontal">
-                            <TextBox Text="99" Width="25" VerticalContentAlignment="Center" BorderThickness="0" Background="Transparent" Margin="2,0,0,0"/>
-                            <TextBlock Text="＠＠＠＊＠＠＠＠＊＠＠＠＊＠＠＠＊＠" VerticalAlignment="Center" Margin="5,0,5,0"/>
+                            <TextBox Text="{Binding DayKindCode, UpdateSourceTrigger=PropertyChanged}" Width="40" VerticalContentAlignment="Center" BorderThickness="0" Background="Transparent" Margin="2,0,0,0"/>
+                            <TextBlock Text="{Binding DayKindName}" VerticalAlignment="Center" Margin="5,0,5,0" Width="200" TextTrimming="CharacterEllipsis"/>
                         </StackPanel>
                     </Border>
                 </StackPanel>
@@ -69,11 +69,11 @@
                     </Border>
                     <Border BorderBrush="#A0A0A0" BorderThickness="1" Background="White" Margin="5,0,0,0" Height="22">
                         <StackPanel Orientation="Horizontal">
-                            <TextBox Text="99" Width="25" VerticalContentAlignment="Center" BorderThickness="0" Background="Transparent" Margin="2,0,0,0"/>
-                            <TextBlock Text="＠＠＠＊＠＠＠＠＊＠＠＠＊＠＠＠＊＠" VerticalAlignment="Center" Margin="5,0,5,0"/>
+                            <TextBox Text="{Binding TimeZoneCode, UpdateSourceTrigger=PropertyChanged}" Width="40" VerticalContentAlignment="Center" BorderThickness="0" Background="Transparent" Margin="2,0,0,0"/>
+                            <TextBlock Text="{Binding TimeZoneName}" VerticalAlignment="Center" Margin="5,0,5,0" Width="200" TextTrimming="CharacterEllipsis"/>
                         </StackPanel>
                     </Border>
-                    <Button Content="検索(S)" Width="90" Height="22" Margin="30,0,0,0">
+                    <Button Content="検索(S)" Command="{Binding SearchCommand}" Width="90" Height="22" Margin="30,0,0,0">
                         <Button.Background>
                             <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
                                 <GradientStop Color="#F0F0F0" Offset="0.0" />
@@ -84,9 +84,10 @@
                 </StackPanel>
             </StackPanel>
 
-            <!-- Sub-grid on the right -->
-            <DataGrid Grid.Column="1" Width="230" Height="85" HorizontalAlignment="Right" VerticalAlignment="Top"
-                      AutoGenerateColumns="False" HeadersVisibility="Column" SelectionMode="Single"
+            <!-- Sub-grid on the right: Selection List -->
+            <DataGrid Grid.Column="1" Width="250" Height="85" HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                      ItemsSource="{Binding SelectionListView}" AutoGenerateColumns="False" HeadersVisibility="Column" 
+                      SelectionMode="Single" IsReadOnly="True"
                       Background="White" RowBackground="White" AlternatingRowBackground="#E6F2E6"
                       BorderBrush="#A0A0A0" BorderThickness="1" GridLinesVisibility="None" RowHeaderWidth="0">
                 <DataGrid.ColumnHeaderStyle>
@@ -99,21 +100,16 @@
                     </Style>
                 </DataGrid.ColumnHeaderStyle>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="センター" Width="80" Binding="{Binding Dummy1}"/>
-                    <DataGridTextColumn Header="時間帯" Width="130" Binding="{Binding Dummy2}"/>
+                    <DataGridTextColumn Header="センター" Width="80" Binding="{Binding C_CenterCode}"/>
+                    <DataGridTextColumn Header="日種" Width="50" Binding="{Binding C_DayKindCode}"/>
+                    <DataGridTextColumn Header="時間帯" Width="80" Binding="{Binding C_TimeZoneCode}"/>
                 </DataGrid.Columns>
-                <!-- dummy data for visualization -->
-                <DataGrid.Items>
-                    <System:String xmlns:System="clr-namespace:System;assembly=mscorlib">dummy</System:String>
-                    <System:String xmlns:System="clr-namespace:System;assembly=mscorlib">dummy</System:String>
-                    <System:String xmlns:System="clr-namespace:System;assembly=mscorlib">dummy</System:String>
-                    <System:String xmlns:System="clr-namespace:System;assembly=mscorlib">dummy</System:String>
-                </DataGrid.Items>
             </DataGrid>
         </Grid>
 
         <!-- Main DataGrid -->
         <DataGrid Grid.Row="1" Margin="0,0,0,10"
+                  ItemsSource="{Binding EmployeeDetails}" SelectedItem="{Binding SelectedEmployee}"
                   AutoGenerateColumns="False" HeadersVisibility="Column" SelectionMode="Single"
                   Background="White" RowBackground="White" AlternatingRowBackground="#FFFFCC"
                   BorderBrush="#A0A0A0" BorderThickness="1" GridLinesVisibility="All" RowHeaderWidth="0"
@@ -128,117 +124,36 @@
                 </Style>
             </DataGrid.ColumnHeaderStyle>
             <DataGrid.Columns>
-                <DataGridTextColumn Header="職種" Width="90" />
-                <DataGridTextColumn Header="社員" Width="260" />
-                <DataGridTextColumn Header="出務" Width="50" />
-                <DataGridTextColumn Header="開始時間" Width="80" />
-                <DataGridTextColumn Header="終了時間" Width="80" />
-                <DataGridTextColumn Header="休憩開始時間" Width="90" />
-                <DataGridTextColumn Header="休憩終了時間" Width="90" />
-                <DataGridTextColumn Header="遅参開始時間" Width="90" />
-                <DataGridTextColumn Header="遅参終了時間" Width="90" />
+                <DataGridTextColumn Header="職種" Width="80" Binding="{Binding JobName}" IsReadOnly="True" />
+                <DataGridTextColumn Header="社員" Width="180" Binding="{Binding EmployeeName}" IsReadOnly="True" />
+                <DataGridTextColumn Header="出務" Width="40" Binding="{Binding WorkingCode}" />
+                <DataGridTextColumn Header="超過開始" Width="80" Binding="{Binding OverStartTime}" />
+                <DataGridTextColumn Header="超過終了" Width="80" Binding="{Binding OverEndTime}" />
+                <DataGridTextColumn Header="休憩開始" Width="80" Binding="{Binding BreakStartTime}" />
+                <DataGridTextColumn Header="休憩終了" Width="80" Binding="{Binding BreakEndTime}" />
+                <DataGridTextColumn Header="遅参開始" Width="80" Binding="{Binding LateStartTime}" />
+                <DataGridTextColumn Header="遅参終了" Width="80" Binding="{Binding LateEndTime}" />
             </DataGrid.Columns>
-            <!-- dummy data for visualization -->
-            <DataGrid.Items>
-                <System:String xmlns:System="clr-namespace:System;assembly=mscorlib">dummy</System:String>
-                <System:String xmlns:System="clr-namespace:System;assembly=mscorlib">dummy</System:String>
-                <System:String xmlns:System="clr-namespace:System;assembly=mscorlib">dummy</System:String>
-                <System:String xmlns:System="clr-namespace:System;assembly=mscorlib">dummy</System:String>
-                <System:String xmlns:System="clr-namespace:System;assembly=mscorlib">dummy</System:String>
-                <System:String xmlns:System="clr-namespace:System;assembly=mscorlib">dummy</System:String>
-                <System:String xmlns:System="clr-namespace:System;assembly=mscorlib">dummy</System:String>
-                <System:String xmlns:System="clr-namespace:System;assembly=mscorlib">dummy</System:String>
-                <System:String xmlns:System="clr-namespace:System;assembly=mscorlib">dummy</System:String>
-                <System:String xmlns:System="clr-namespace:System;assembly=mscorlib">dummy</System:String>
-                <System:String xmlns:System="clr-namespace:System;assembly=mscorlib">dummy</System:String>
-                <System:String xmlns:System="clr-namespace:System;assembly=mscorlib">dummy</System:String>
-                <System:String xmlns:System="clr-namespace:System;assembly=mscorlib">dummy</System:String>
-                <System:String xmlns:System="clr-namespace:System;assembly=mscorlib">dummy</System:String>
-                <System:String xmlns:System="clr-namespace:System;assembly=mscorlib">dummy</System:String>
-            </DataGrid.Items>
         </DataGrid>
 
         <!-- Footer Buttons -->
         <UniformGrid Grid.Row="2" Rows="1" Columns="12" Height="45">
-            <Button Content="" IsEnabled="False" Margin="1">
-                 <Button.Background>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                        <GradientStop Color="#F0F0F0" Offset="0.0" />
-                        <GradientStop Color="#D0D0D0" Offset="1.0" />
-                    </LinearGradientBrush>
-                </Button.Background>
-            </Button>
-            <Button Content="" IsEnabled="False" Margin="1">
-                 <Button.Background>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                        <GradientStop Color="#F0F0F0" Offset="0.0" />
-                        <GradientStop Color="#D0D0D0" Offset="1.0" />
-                    </LinearGradientBrush>
-                </Button.Background>
-            </Button>
-            <Button Content="" IsEnabled="False" Margin="1">
-                 <Button.Background>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                        <GradientStop Color="#F0F0F0" Offset="0.0" />
-                        <GradientStop Color="#D0D0D0" Offset="1.0" />
-                    </LinearGradientBrush>
-                </Button.Background>            
-            </Button>
-            <Button Content="" IsEnabled="False" Margin="1">
-                 <Button.Background>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                        <GradientStop Color="#F0F0F0" Offset="0.0" />
-                        <GradientStop Color="#D0D0D0" Offset="1.0" />
-                    </LinearGradientBrush>
-                </Button.Background>            
-            </Button>
-            <Button Content="" IsEnabled="False" Margin="1">
-                 <Button.Background>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                        <GradientStop Color="#F0F0F0" Offset="0.0" />
-                        <GradientStop Color="#D0D0D0" Offset="1.0" />
-                    </LinearGradientBrush>
-                </Button.Background>            
-            </Button>
-            <Button Content="" IsEnabled="False" Margin="1">
-                 <Button.Background>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                        <GradientStop Color="#F0F0F0" Offset="0.0" />
-                        <GradientStop Color="#D0D0D0" Offset="1.0" />
-                    </LinearGradientBrush>
-                </Button.Background>            
-            </Button>
-            <Button Margin="1" Background="#E0E0E0">
+            <Button Content="" IsEnabled="False" Margin="1"><Button.Background><LinearGradientBrush StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#F0F0F0" Offset="0"/><GradientStop Color="#D0D0D0" Offset="1"/></LinearGradientBrush></Button.Background></Button>
+            <Button Content="" IsEnabled="False" Margin="1"><Button.Background><LinearGradientBrush StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#F0F0F0" Offset="0"/><GradientStop Color="#D0D0D0" Offset="1"/></LinearGradientBrush></Button.Background></Button>
+            <Button Content="" IsEnabled="False" Margin="1"><Button.Background><LinearGradientBrush StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#F0F0F0" Offset="0"/><GradientStop Color="#D0D0D0" Offset="1"/></LinearGradientBrush></Button.Background></Button>
+            <Button Content="" IsEnabled="False" Margin="1"><Button.Background><LinearGradientBrush StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#F0F0F0" Offset="0"/><GradientStop Color="#D0D0D0" Offset="1"/></LinearGradientBrush></Button.Background></Button>
+            <Button Content="" IsEnabled="False" Margin="1"><Button.Background><LinearGradientBrush StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#F0F0F0" Offset="0"/><GradientStop Color="#D0D0D0" Offset="1"/></LinearGradientBrush></Button.Background></Button>
+            <Button Content="" IsEnabled="False" Margin="1"><Button.Background><LinearGradientBrush StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#F0F0F0" Offset="0"/><GradientStop Color="#D0D0D0" Offset="1"/></LinearGradientBrush></Button.Background></Button>
+            <Button Margin="1" Background="#E0E0E0" Command="{Binding DeleteRowCommand}">
                 <TextBlock TextAlignment="Center" LineHeight="16">F7<LineBreak/>行削除</TextBlock>
             </Button>
-            <Button Content="" IsEnabled="False" Margin="1">
-                 <Button.Background>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                        <GradientStop Color="#F0F0F0" Offset="0.0" />
-                        <GradientStop Color="#D0D0D0" Offset="1.0" />
-                    </LinearGradientBrush>
-                </Button.Background>            
-            </Button>
-            <Button Content="" IsEnabled="False" Margin="1">
-                 <Button.Background>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                        <GradientStop Color="#F0F0F0" Offset="0.0" />
-                        <GradientStop Color="#D0D0D0" Offset="1.0" />
-                    </LinearGradientBrush>
-                </Button.Background>            
-            </Button>
-            <Button Margin="1" Background="#E0E0E0" Click="Close_Click">
+            <Button Content="" IsEnabled="False" Margin="1"><Button.Background><LinearGradientBrush StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#F0F0F0" Offset="0"/><GradientStop Color="#D0D0D0" Offset="1"/></LinearGradientBrush></Button.Background></Button>
+            <Button Content="" IsEnabled="False" Margin="1"><Button.Background><LinearGradientBrush StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#F0F0F0" Offset="0"/><GradientStop Color="#D0D0D0" Offset="1"/></LinearGradientBrush></Button.Background></Button>
+            <Button Margin="1" Background="#E0E0E0" Command="{Binding CancelCommand}">
                 <TextBlock TextAlignment="Center" LineHeight="16">F10<LineBreak/>中止</TextBlock>
             </Button>
-            <Button Content="" IsEnabled="False" Margin="1">
-                 <Button.Background>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                        <GradientStop Color="#F0F0F0" Offset="0.0" />
-                        <GradientStop Color="#D0D0D0" Offset="1.0" />
-                    </LinearGradientBrush>
-                </Button.Background>            
-            </Button>
-            <Button Margin="1" Background="#E0E0E0">
+            <Button Content="" IsEnabled="False" Margin="1"><Button.Background><LinearGradientBrush StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#F0F0F0" Offset="0"/><GradientStop Color="#D0D0D0" Offset="1"/></LinearGradientBrush></Button.Background></Button>
+            <Button Margin="1" Background="#E0E0E0" Command="{Binding SaveCommand}">
                 <TextBlock TextAlignment="Center" LineHeight="16">F12<LineBreak/>登録</TextBlock>
             </Button>
         </UniformGrid>

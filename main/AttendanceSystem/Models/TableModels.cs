@@ -144,6 +144,8 @@ namespace AttendanceSystem.Models
         public decimal C_MinutePrice { get; set; }
         public long C_OverStartTime { get; set; }
         public long C_OverEndTime { get; set; }
+        public long C_BreakStartTime { get; set; }
+        public long C_BreakEndTime { get; set; }
         public int C_OverTime { get; set; }
         public decimal C_OverMoney { get; set; }
         
@@ -153,6 +155,15 @@ namespace AttendanceSystem.Models
         public int C_LateTime { get; set; }
         public decimal C_LateMoney { get; set; }
         public decimal C_PaymentMoney { get; set; }
+
+        // 通常勤務関連
+        public int C_UsualDutiesCode { get; set; }
+        public long C_UsualDutiesStartTime { get; set; }
+        public long C_UsualDutiesEndTime { get; set; }
+        public long C_UsualDutiesRestStartTime { get; set; }
+        public long C_UsualDutiesRestEndTime { get; set; }
+        public int C_UsualDutiesTime { get; set; }
+        public decimal C_UsualDutiesMoney { get; set; }
     }
 
     /// <summary>

@@ -7,11 +7,7 @@ namespace AttendanceSystem.Views
         public AttendanceRegistrationView()
         {
             InitializeComponent();
-        }
-
-        private void Close_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
+            DataContext = new ViewModels.AttendanceRegistrationViewModel();
         }
     }
 }

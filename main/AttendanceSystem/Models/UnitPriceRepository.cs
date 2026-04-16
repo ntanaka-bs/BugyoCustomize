@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using Microsoft.Data.SqlClient;
@@ -24,7 +24,7 @@ namespace AttendanceSystem.Models
                 cmd.Parameters.AddWithValue("@JobCode", jobCode);
                 conn.Open();
                 var result = cmd.ExecuteScalar();
-                return result != null ? result.ToString() : string.Empty;
+                return result != null ? result.ToString() ?? string.Empty : string.Empty;
             }
         }
 
@@ -41,7 +41,7 @@ namespace AttendanceSystem.Models
                 cmd.Parameters.AddWithValue("@DayKindCode", dayKindCode);
                 conn.Open();
                 var result = cmd.ExecuteScalar();
-                return result != null ? result.ToString() : string.Empty;
+                return result != null ? result.ToString() ?? string.Empty : string.Empty;
             }
         }
 
@@ -58,7 +58,7 @@ namespace AttendanceSystem.Models
                 cmd.Parameters.AddWithValue("@TimeZoneCode", timeZoneCode);
                 conn.Open();
                 var result = cmd.ExecuteScalar();
-                return result != null ? result.ToString() : string.Empty;
+                return result != null ? result.ToString() ?? string.Empty : string.Empty;
             }
         }
 
@@ -129,11 +129,11 @@ namespace AttendanceSystem.Models
                         {
                             JobID = Convert.ToInt32(reader["C_JobID"]),
                             DayKindID = Convert.ToInt32(reader["C_DayKindID"]),
-                            DayKindCode = reader["C_DayKindCode"].ToString(),
-                            DayKindName = reader["C_DayKindAbbreviationName"].ToString(),
+                            DayKindCode = reader["C_DayKindCode"]?.ToString() ?? string.Empty,
+                            DayKindName = reader["C_DayKindAbbreviationName"]?.ToString() ?? string.Empty,
                             TimeZoneID = Convert.ToInt32(reader["C_TimeZoneID"]),
-                            TimeZoneCode = reader["C_TimeZoneCode"].ToString(),
-                            TimeZoneName = reader["C_TimeZoneAbbreviationName"].ToString(),
+                            TimeZoneCode = reader["C_TimeZoneCode"]?.ToString() ?? string.Empty,
+                            TimeZoneName = reader["C_TimeZoneAbbreviationName"]?.ToString() ?? string.Empty,
                             UnitPriceID = Convert.ToInt32(reader["C_UnitPriceID"]),
                             UnitPrice = Convert.ToInt32(reader["C_UnitPrice"]),
                             BasicTime = Convert.ToInt32(reader["C_BasicTime"]),

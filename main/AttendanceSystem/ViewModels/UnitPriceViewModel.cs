@@ -46,7 +46,7 @@ namespace AttendanceSystem.ViewModels
             }
         }
 
-        private string _jobCode;
+        private string _jobCode = string.Empty;
         public string JobCode
         {
             get => _jobCode;
@@ -56,10 +56,10 @@ namespace AttendanceSystem.ViewModels
             }
         }
 
-        private string _jobName;
+        private string _jobName = string.Empty;
         public string JobName { get => _jobName; set => SetProperty(ref _jobName, value); }
 
-        private string _dayKindCode;
+        private string _dayKindCode = string.Empty;
         public string DayKindCode
         {
             get => _dayKindCode;
@@ -69,10 +69,10 @@ namespace AttendanceSystem.ViewModels
             }
         }
 
-        private string _dayKindName;
+        private string _dayKindName = string.Empty;
         public string DayKindName { get => _dayKindName; set => SetProperty(ref _dayKindName, value); }
 
-        private string _timeZoneCode;
+        private string _timeZoneCode = string.Empty;
         public string TimeZoneCode
         {
             get => _timeZoneCode;
@@ -82,13 +82,13 @@ namespace AttendanceSystem.ViewModels
             }
         }
 
-        private string _timeZoneName;
+        private string _timeZoneName = string.Empty;
         public string TimeZoneName { get => _timeZoneName; set => SetProperty(ref _timeZoneName, value); }
 
         public ObservableCollection<UnitPriceDetail> Details { get; } = new ObservableCollection<UnitPriceDetail>();
 
-        private UnitPriceDetail _selectedDetail;
-        public UnitPriceDetail SelectedDetail { get => _selectedDetail; set => SetProperty(ref _selectedDetail, value); }
+        private UnitPriceDetail? _selectedDetail;
+        public UnitPriceDetail? SelectedDetail { get => _selectedDetail; set => SetProperty(ref _selectedDetail, value); }
 
         public bool HasData => Details.Any();
 
@@ -125,7 +125,7 @@ namespace AttendanceSystem.ViewModels
                 TimeZoneName = string.Empty;
         }
 
-        private void ExecuteSearch(object obj)
+        private void ExecuteSearch(object? obj)
         {
             if (string.IsNullOrWhiteSpace(JobCode) || !int.TryParse(JobCode, out int jCode))
             {
@@ -148,7 +148,7 @@ namespace AttendanceSystem.ViewModels
             }
         }
 
-        private void ExecuteF12(object obj)
+        private void ExecuteF12(object? obj)
         {
             if (HasData)
             {
@@ -173,7 +173,7 @@ namespace AttendanceSystem.ViewModels
                 }
                 
                 MessageBox.Show(MessageConfig.InfoSuccessSave, MessageConfig.TitleSuccess, MessageBoxButton.OK, MessageBoxImage.Information);
-                ExecuteSearch(null); 
+                ExecuteSearch(null!); 
             }
             catch (Exception ex)
             {
@@ -181,9 +181,9 @@ namespace AttendanceSystem.ViewModels
             }
         }
 
-        private bool CanExecuteCancel(object obj) => HasData;
+        private bool CanExecuteCancel(object? obj) => HasData;
 
-        private void ExecuteCancel(object obj)
+        private void ExecuteCancel(object? obj)
         {
             Details.Clear();
             JobCode = ""; JobName = "";
@@ -191,9 +191,9 @@ namespace AttendanceSystem.ViewModels
             TimeZoneCode = ""; TimeZoneName = "";
         }
 
-        private bool CanExecuteDeleteRow(object obj) => HasData && SelectedDetail != null && SelectedDetail.UnitPriceID > 0;
+        private bool CanExecuteDeleteRow(object? obj) => HasData && SelectedDetail != null && SelectedDetail.UnitPriceID > 0;
 
-        private void ExecuteDeleteRow(object obj)
+        private void ExecuteDeleteRow(object? obj)
         {
             if (SelectedDetail == null || SelectedDetail.UnitPriceID <= 0) return;
 
@@ -203,7 +203,7 @@ namespace AttendanceSystem.ViewModels
                 try
                 {
                     _repository.DeleteUnitPriceData(SelectedDetail.UnitPriceID);
-                    ExecuteSearch(null); 
+                    ExecuteSearch(null!); 
                 }
                 catch (Exception ex)
                 {
