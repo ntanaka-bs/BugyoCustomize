@@ -186,16 +186,33 @@ namespace AttendanceSystem.ViewModels
 
             try
             {
-                // リポジトリを通じてデータベースから勤怠データ件数を取得する
-                var repo  = new DailyAttendanceRepository();
-                int count = repo.GetAttendanceCount(StartDate, EndDate, JobCodeStart, JobCodeEnd, DayKindCodeStart, DayKindCodeEnd);
+                // リポジトリを通じてデータベースから詳細な勤怠データを取得する
+                var repo = new DailyAttendanceRepository();
+                var dt = repo.GetAttendanceDataDetailed(
+                    ListType,
+                    StartDate,
+                    EndDate,
+                    CenterCodeStart, CenterCodeEnd,
+                    JobCodeStart, JobCodeEnd,
+                    DayKindCodeStart, DayKindCodeEnd,
+                    TimeZoneCodeStart, TimeZoneCodeEnd,
+                    AttendanceStatus);
 
-                // 現状はデータ抽出件数を確認用メッセージボックスで表示する（本印刷機能は実装予定）
+                int count = dt.Rows.Count;
+                string listTypeName = ListType switch
+                {
+                    0 => "チェックリスト",
+                    1 => "注意リスト",
+                    2 => "計算前リスト",
+                    _ => "不明"
+                };
+
+                // 現状は抽出結果の概要を表示（本印刷機能は後続で実装）
                 MessageBox.Show($"プレビュー抽出を実行しました。\n" +
                                 $"期間: {StartDate:yyyy/MM/dd} ～ {EndDate:yyyy/MM/dd}\n" +
-                                $"リストタイプ: {ListType}\n" +
+                                $"リストタイプ: {listTypeName}\n" +
                                 $"抽出データ件数: {count} 件\n" +
-                                $"(後続の印刷機能等でこのデータを帳票に出力します)",
+                                $"(帳票出力機能で詳細を表示します)",
                                 "プレビュー結果", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)

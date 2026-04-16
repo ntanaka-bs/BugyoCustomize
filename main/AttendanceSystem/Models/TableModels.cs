@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace AttendanceSystem.Models
@@ -120,7 +120,7 @@ namespace AttendanceSystem.Models
     }
 
     /// <summary>
-    /// 勤怠データ（T_tbAttendance）用モデル。単価削除時の存在チェックに使用
+    /// 勤怠データ（T_tbAttendance）用モデル
     /// </summary>
     public class TtbAttendance
     {
@@ -128,10 +128,52 @@ namespace AttendanceSystem.Models
         /// 勤怠データID
         /// </summary>
         public int C_AttendanceID { get; set; }
+        public DateTime C_Date { get; set; }
+        public int C_TimeZoneID { get; set; }
+        public int C_EmployeeID { get; set; }
+        public int C_CenterID { get; set; }
+        public int C_JobID { get; set; }
+        public int C_DayKindID { get; set; }
         /// <summary>
         /// 単価設定ID
         /// </summary>
         public int C_UnitPriceID { get; set; }
+        public int C_WorkingCode { get; set; }
+        public decimal C_UnitPrice { get; set; }
+        public int C_StandardTime { get; set; }
+        public decimal C_MinutePrice { get; set; }
+        public long C_OverStartTime { get; set; }
+        public long C_OverEndTime { get; set; }
+        public int C_OverTime { get; set; }
+        public decimal C_OverMoney { get; set; }
+        
+        // 追加列
+        public long C_LateStartTime { get; set; }
+        public long C_LateEndTime { get; set; }
+        public int C_LateTime { get; set; }
+        public decimal C_LateMoney { get; set; }
+        public decimal C_PaymentMoney { get; set; }
+    }
+
+    /// <summary>
+    /// 勤怠データインポート（T_tbAttendanceImport）用モデル
+    /// </summary>
+    public class TtbAttendanceImport
+    {
+        public int C_RowID { get; set; }
+        public DateTime C_Date { get; set; }
+        public int C_CenterID { get; set; }
+        public int C_JobID { get; set; }
+        public int C_DayKindID { get; set; }
+        public int C_TimeZoneID { get; set; }
+        public int C_EmployeeID { get; set; }
+        public int C_UnitPriceID { get; set; }
+        public int C_WorkingCode { get; set; }
+        public decimal C_UnitPrice { get; set; }
+        public int C_StandardTime { get; set; }
+        public decimal C_MinutePrice { get; set; }
+        public int C_ErrFlg { get; set; }
+        public string C_Err { get; set; } = string.Empty;
     }
 
     /// <summary>
